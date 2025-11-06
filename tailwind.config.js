@@ -4,14 +4,13 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
-      // Paleta tomada del logo ALAF
       colors: {
         brand: {
           celeste: "#AEE3EB",
           lime:    "#B7D96B",
           pink:    "#E8C7DC",
           outline: "#5C5C5C",
-          ink:     "#2B2F33" // gris carbón (titulares, botón primario)
+          ink:     "#2B2F33"
         },
         neutralx: {
           bg:     "#FAFCFE",
