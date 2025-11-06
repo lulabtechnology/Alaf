@@ -3,39 +3,39 @@
 @tailwind utilities;
 
 /* ======================
-   Tokens (claro profesional)
+   Tokens (logo + referencia)
    ====================== */
 :root{
-  --bg:            theme(colors.neutralx.bg);
-  --surface:       theme(colors.neutralx.surface);
-  --border:        theme(colors.neutralx.border);
-  --text:          theme(colors.neutralx.text);
-  --muted:         theme(colors.neutralx.muted);
+  --bg:        theme(colors.neutralx.bg);
+  --surface:   theme(colors.neutralx.surface);
+  --border:    theme(colors.neutralx.border);
+  --text:      theme(colors.neutralx.text);
+  --muted:     theme(colors.neutralx.muted);
 
-  --brand:         theme(colors.brand.primary);
-  --brand-tint:    theme(colors.brand.primaryTint);
-  --brand-teal:    theme(colors.brand.teal);
-  --brand-lime:    theme(colors.brand.lime);
-  --brand-gold:    theme(colors.brand.gold);
+  --ink:       theme(colors.brand.ink);     /* primario: gris carbón elegante */
+  --celeste:   theme(colors.brand.celeste); /* del logo */
+  --lime:      theme(colors.brand.lime);    /* del logo */
+  --pink:      theme(colors.brand.pink);    /* del logo */
+  --outline:   theme(colors.brand.outline); /* contorno del logo */
 
   --radius: 1rem;
 }
 
+/* Fondo claro con acentos muy suaves (celeste del logo) */
 html, body { scroll-behavior: smooth; }
 body{
   background:
-    radial-gradient(900px 500px at 15% -10%, var(--brand-tint) 0%, transparent 60%),
-    radial-gradient(1100px 600px at 100% 0%, #EFF6FB 0%, transparent 55%),
+    radial-gradient(1000px 520px at 85% -10%, color-mix(in srgb, var(--celeste) 28%, #ffffff 72%) 0%, transparent 60%),
+    radial-gradient(800px 420px at -10% 0%, #F2F7FB 0%, transparent 58%),
     var(--bg);
   color: var(--text);
-  font-feature-settings: "ss01" on, "ss02" on;
 }
 
 /* Helpers */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
-.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight text-slate-900; }
-.h2 { @apply text-3xl md:text-4xl font-semibold text-slate-900; }
+.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight text-[color:var(--ink)]; }
+.h2 { @apply text-3xl md:text-4xl font-semibold text-[color:var(--ink)]; }
 .muted { color: var(--muted); }
 
 /* Tarjetas */
@@ -43,19 +43,24 @@ body{
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow, 0 14px 30px -18px rgba(15,23,42,.25));
+  box-shadow: var(--shadow, 0 14px 30px -18px rgba(15,23,42,.18));
 }
 
-/* Botones */
-.btn{ @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none; }
-.btn-primary{ background: var(--brand); color: #fff; }
-.btn-primary:hover{ filter: brightness(1.06); transform: translateY(-1px); }
-.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, #fff 75%); }
+/* Botones (look ref: sólido oscuro + suave pastel) */
+.btn{
+  @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
+}
+.btn-primary{
+  background: var(--ink);
+  color: #fff;
+}
+.btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
 
 .btn-secondary{
-  background: color-mix(in srgb, var(--brand-teal) 12%, #fff 88%);
-  color: var(--brand);
-  border: 1px solid color-mix(in srgb, var(--brand) 12%, #fff 88%);
+  background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%);
+  color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%);
 }
 .btn-secondary:hover{ filter: brightness(0.98); }
 
@@ -68,64 +73,72 @@ input, textarea{
 }
 input::placeholder, textarea::placeholder{ color: #9aa7b3; }
 input:focus, textarea:focus{
-  border-color: color-mix(in srgb, var(--brand-teal) 50%, #fff 50%);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-teal) 25%, #fff 75%);
+  border-color: color-mix(in srgb, var(--celeste) 60%, #ffffff 40%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--celeste) 28%, #ffffff 72%);
 }
 
 /* Navbar */
 header{
-  background: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-nav, 0 10px 25px -20px rgba(15,23,42,.35));
+  box-shadow: var(--shadow-nav, 0 10px 25px -20px rgba(15,23,42,.28));
 }
 header a{ @apply text-sm text-slate-700; }
-header a:hover{ color: var(--brand); }
+header a:hover{ color: var(--ink); }
 
-/* Hero overlay */
+/* Hero overlay (celeste + lime del logo, muy sutil) */
 #inicio{ position: relative; }
 #inicio::after{
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(21,62,92,.35) 0%, rgba(21,62,92,.22) 35%, rgba(0,0,0,.12) 100%);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--celeste) 35%, #000 0%) 0%,
+      rgba(0,0,0,.18) 55%,
+      rgba(0,0,0,.12) 100%);
   pointer-events: none;
 }
 #inicio .h1, #inicio p, #inicio .btn{ color: #fff; }
 #inicio .btn-secondary{
-  background: rgba(255,255,255,.15); color: #fff;
+  background: rgba(255,255,255,.16);
   border: 1px solid rgba(255,255,255,.28);
+  color: #fff;
 }
 
-/* Bullets e íconos con color de marca */
-ul li svg{ color: var(--brand-teal); }
+/* Bullets e iconos: usa celeste del logo */
+ul li svg{ color: var(--celeste); }
 
-/* Dots del carrusel */
-.dot {
-  height: .6rem; width: 1.8rem; border-radius: 9999px;
-  border: 1px solid #cbd5e1; background: #e2e8f0;
-}
-.dot[aria-current="true"]{ background: var(--brand-teal); border-color: var(--brand-teal); }
-
-/* FAQ: item abierto con fondo legible */
-.faq-item { border: 1px solid var(--border); border-radius: var(--radius); }
-.faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
-.faq-open { background: color-mix(in srgb, var(--brand-teal) 10%, #fff 90%); }
-.faq-body { @apply px-4 pb-4 text-slate-700; }
-
-/* Servicios (logos redondos) */
+/* Servicios (chips con colores del logo) */
 .service-icon{
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 56px; height: 56px; border-radius: 9999px;
-  background: radial-gradient(80% 80% at 30% 20%, #fff, color-mix(in srgb, var(--brand-teal) 14%, #fff 86%));
-  border: 1px solid color-mix(in srgb, var(--brand-teal) 22%, #e5e9ef 78%);
-  color: var(--brand);
+  display:inline-flex;align-items:center;justify-content:center;
+  width:56px;height:56px;border-radius:9999px;
+  background: radial-gradient(80% 80% at 30% 20%, #fff, color-mix(in srgb, var(--celeste) 14%, #fff 86%));
+  border:1px solid color-mix(in srgb, var(--celeste) 22%, #e5e9ef 78%);
+  color: var(--ink);
 }
+
+/* Dots del carrusel: visibles y en celeste */
+.dot{
+  height:.6rem;width:1.8rem;border-radius:9999px;
+  border:1px solid #cbd5e1;background:#e2e8f0;
+}
+.dot[aria-current="true"]{ background: var(--celeste); border-color: var(--celeste); }
+
+/* FAQ legible al abrir */
+.faq-item { border:1px solid var(--border); border-radius: var(--radius); }
+.faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
+.faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%); }
+.faq-body { @apply px-4 pb-4 text-slate-800; }
 
 /* Footer */
-footer{ background: #0F172A; color: #E5E7EB; }
-footer a:hover{ color: #fff; text-decoration: underline; }
+footer{ background: #0F172A; color:#E5E7EB; }
+footer a:hover{ color:#fff; text-decoration: underline; }
 
-/* Overrides de legibilidad */
-.text-gray-300 { color: #64748b !important; }
-.text-gray-200 { color: #475569 !important; }
-.card svg{ color: var(--brand-teal); }
+/* Legibilidad global (por si quedaron clases viejas) */
+.text-gray-300 { color:#64748b !important; }
+.text-gray-200 { color:#475569 !important; }
+
+/* Acentos secundarios (lime y pink del logo) para badges/etiquetas si las usas */
+.badge-lime  { background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
+.badge-pink  { background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
