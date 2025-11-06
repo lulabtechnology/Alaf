@@ -6,43 +6,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta clara y profesional
+        /* Paleta combinada (referencia + logo ALAF)
+           - Azul petróleo (primario)
+           - Teal/celeste profesional (secundario)
+           - Lima suave (logo ALAF)
+           - Dorado tenue para acentos
+           - Grises limpios para UI clara
+        */
         brand: {
-          // primario profundo (azul petróleo)
-          primary: "#173B5F",
-          // primario claro para hovers y fondos suaves
-          primaryLight: "#E9F1F7",
-          // acentos (celeste suavizado y lima suave)
-          sky: "#4AA8D8",
-          lime: "#8BCB6D",
-          // rosa muy tenue para badges
-          pink: "#F6DDE6",
+          primary: "#153E5C",      // azul petróleo
+          primaryTint: "#E9F2F8",  // fondo suave relacionado
+          teal: "#2CA7B9",         // teal/celeste
+          lime: "#8BCB6D",         // lima (logo ALAF)
+          gold: "#F2C24B",         // dorado/acento
         },
         neutralx: {
-          bg: "#F7F8FA",         // fondo general
-          surface: "#FFFFFF",    // tarjetas/sections
-          border: "#E6E8EC",     // bordes sutiles
-          text: "#0F172A",       // texto principal (slate-900)
-          muted: "#4B5563",      // texto secundario (slate-600)
+          bg: "#F7F9FB",
+          surface: "#FFFFFF",
+          border: "#E5E9EF",
+          text: "#0F172A",
+          muted: "#475569",
         },
-        // Compat con tus clases anteriores
+        // Compat con utilidades que ya usas
         base: {
-          bg: "#F7F8FA",
+          bg: "#F7F9FB",
           card: "#FFFFFF",
           text: "#0F172A",
         },
         accent: {
           lime: "#8BCB6D",
-          sky: "#4AA8D8",
-          pink: "#F6DDE6",
+          sky: "#2CA7B9",
+          gold: "#F2C24B",
         },
       },
       borderRadius: {
         "2xl": "1rem",
       },
       boxShadow: {
-        soft: "0 10px 25px -12px rgba(16, 24, 40, 0.15)",
-        nav: "0 6px 20px -10px rgba(16, 24, 40, 0.18)",
+        soft: "0 14px 30px -18px rgba(15, 23, 42, .25)",
+        nav: "0 10px 25px -20px rgba(15, 23, 42, .35)",
       },
       maxWidth: {
         "7xl": "80rem",
@@ -51,4 +53,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
