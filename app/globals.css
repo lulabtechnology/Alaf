@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ======================
-   Design Tokens (Light)
+   Tokens (claro profesional)
    ====================== */
 :root{
   --bg:            theme(colors.neutralx.bg);
@@ -13,60 +13,49 @@
   --muted:         theme(colors.neutralx.muted);
 
   --brand:         theme(colors.brand.primary);
-  --brand-100:     theme(colors.brand.primaryLight);
-  --brand-sky:     theme(colors.brand.sky);
+  --brand-tint:    theme(colors.brand.primaryTint);
+  --brand-teal:    theme(colors.brand.teal);
   --brand-lime:    theme(colors.brand.lime);
-  --brand-pink:    theme(colors.brand.pink);
+  --brand-gold:    theme(colors.brand.gold);
 
   --radius: 1rem;
 }
 
 html, body { scroll-behavior: smooth; }
-
 body{
-  background: radial-gradient(1200px 600px at 80% -10%, var(--brand-100) 0%, transparent 55%),
-              radial-gradient(900px 500px at -10% 0%, #F2F7FB 0%, transparent 60%),
-              var(--bg);
+  background:
+    radial-gradient(900px 500px at 15% -10%, var(--brand-tint) 0%, transparent 60%),
+    radial-gradient(1100px 600px at 100% 0%, #EFF6FB 0%, transparent 55%),
+    var(--bg);
   color: var(--text);
   font-feature-settings: "ss01" on, "ss02" on;
 }
 
-/* ======================
-   Helpers heredados
-   ====================== */
+/* Helpers */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
-
-/* Encabezados */
 .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight text-slate-900; }
 .h2 { @apply text-3xl md:text-4xl font-semibold text-slate-900; }
 .muted { color: var(--muted); }
 
-/* Tarjetas y elementos */
+/* Tarjetas */
 .card{
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow, 0 10px 25px -12px rgba(16,24,40,.12));
-  backdrop-filter: saturate(1.1);
+  box-shadow: var(--shadow, 0 14px 30px -18px rgba(15,23,42,.25));
 }
 
 /* Botones */
-.btn{
-  @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.02);
-}
-.btn-primary{
-  background: var(--brand);
-  color: white;
-}
-.btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, #ffffff 75%); }
+.btn{ @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none; }
+.btn-primary{ background: var(--brand); color: #fff; }
+.btn-primary:hover{ filter: brightness(1.06); transform: translateY(-1px); }
+.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, #fff 75%); }
 
 .btn-secondary{
-  background: var(--brand-100);
+  background: color-mix(in srgb, var(--brand-teal) 12%, #fff 88%);
   color: var(--brand);
-  border: 1px solid color-mix(in srgb, var(--brand) 12%, #ffffff 88%);
+  border: 1px solid color-mix(in srgb, var(--brand) 12%, #fff 88%);
 }
 .btn-secondary:hover{ filter: brightness(0.98); }
 
@@ -77,78 +66,66 @@ input, textarea{
   border: 1px solid var(--border);
   color: var(--text);
 }
+input::placeholder, textarea::placeholder{ color: #9aa7b3; }
 input:focus, textarea:focus{
-  border-color: color-mix(in srgb, var(--brand) 45%, #ffffff 55%);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, #ffffff 80%);
+  border-color: color-mix(in srgb, var(--brand-teal) 50%, #fff 50%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-teal) 25%, #fff 75%);
 }
 
-/* Navbar (sticky) */
+/* Navbar */
 header{
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,.9);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-nav, 0 6px 20px -10px rgba(16,24,40,.18));
+  box-shadow: var(--shadow-nav, 0 10px 25px -20px rgba(15,23,42,.35));
 }
 header a{ @apply text-sm text-slate-700; }
 header a:hover{ color: var(--brand); }
 
-/* Hero */
-#inicio{
-  position: relative;
-}
+/* Hero overlay */
+#inicio{ position: relative; }
 #inicio::after{
-  /* overlay más fino y profesional */
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(23,59,95,.35) 0%, rgba(23,59,95,.25) 35%, rgba(0,0,0,.10) 100%);
+  background: linear-gradient(180deg, rgba(21,62,92,.35) 0%, rgba(21,62,92,.22) 35%, rgba(0,0,0,.12) 100%);
   pointer-events: none;
 }
-/* Texto del hero en blanco para asegurar contraste sobre la imagen */
 #inicio .h1, #inicio p, #inicio .btn{ color: #fff; }
 #inicio .btn-secondary{
-  background: rgba(255,255,255,.14);
-  border-color: rgba(255,255,255,.28);
-  color: #fff;
-}
-#inicio .btn-secondary:hover{ background: rgba(255,255,255,.22); }
-
-/* Divisores suaves entre secciones */
-.section + .section{
-  background:
-    linear-gradient(180deg, rgba(23,59,95,0.035), rgba(23,59,95,0.00));
+  background: rgba(255,255,255,.15); color: #fff;
+  border: 1px solid rgba(255,255,255,.28);
 }
 
-/* Listas con checks */
-ul li svg{ color: var(--brand); }
+/* Bullets e íconos con color de marca */
+ul li svg{ color: var(--brand-teal); }
 
-/* Galería de éxitos */
-figure.card{ overflow: hidden; }
-figure.card img{ transition: transform .5s ease; }
-figure.card:hover img{ transform: scale(1.03); }
-
-/* Footer */
-footer{
-  background: #0F172A;
-  color: #E5E7EB;
+/* Dots del carrusel */
+.dot {
+  height: .6rem; width: 1.8rem; border-radius: 9999px;
+  border: 1px solid #cbd5e1; background: #e2e8f0;
 }
-footer a:hover{ color: #fff; text-decoration: underline; }
+.dot[aria-current="true"]{ background: var(--brand-teal); border-color: var(--brand-teal); }
 
-/* ======================
-   Overrides seguros
-   (para no tocar estructura)
-   ====================== */
+/* FAQ: item abierto con fondo legible */
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); }
+.faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
+.faq-open { background: color-mix(in srgb, var(--brand-teal) 10%, #fff 90%); }
+.faq-body { @apply px-4 pb-4 text-slate-700; }
 
-/* Muchos componentes usaban text-gray-200. En tema claro sería muy pálido.
-   Lo reasignamos a un gris legible. */
-.text-gray-200{ color: #475569 !important; }
-/* Y algunos iconos usaban text-white: no tocar (beneficia el Hero). */
-
-/* Iconos de Lucide en tarjetas: coherentes con el primario */
-.card svg{ color: var(--brand); }
-
-/* Badges */
-.badge, .Badge{
-  @apply inline-flex items-center rounded-full px-3 py-1 text-xs;
-  background: color-mix(in srgb, var(--brand) 10%, #ffffff 90%);
+/* Servicios (logos redondos) */
+.service-icon{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 9999px;
+  background: radial-gradient(80% 80% at 30% 20%, #fff, color-mix(in srgb, var(--brand-teal) 14%, #fff 86%));
+  border: 1px solid color-mix(in srgb, var(--brand-teal) 22%, #e5e9ef 78%);
   color: var(--brand);
 }
+
+/* Footer */
+footer{ background: #0F172A; color: #E5E7EB; }
+footer a:hover{ color: #fff; text-decoration: underline; }
+
+/* Overrides de legibilidad */
+.text-gray-300 { color: #64748b !important; }
+.text-gray-200 { color: #475569 !important; }
+.card svg{ color: var(--brand-teal); }
