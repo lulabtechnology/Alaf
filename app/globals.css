@@ -2,28 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ======================
+   Design Tokens (Light)
+   ====================== */
+:root{
+  --bg:            theme(colors.neutralx.bg);
+  --surface:       theme(colors.neutralx.surface);
+  --border:        theme(colors.neutralx.border);
+  --text:          theme(colors.neutralx.text);
+  --muted:         theme(colors.neutralx.muted);
 
-:root {
---radius: 1rem;
+  --brand:         theme(colors.brand.primary);
+  --brand-100:     theme(colors.brand.primaryLight);
+  --brand-sky:     theme(colors.brand.sky);
+  --brand-lime:    theme(colors.brand.lime);
+  --brand-pink:    theme(colors.brand.pink);
+
+  --radius: 1rem;
 }
 
+html, body { scroll-behavior: smooth; }
 
-html, body {
-scroll-behavior: smooth;
+body{
+  background: radial-gradient(1200px 600px at 80% -10%, var(--brand-100) 0%, transparent 55%),
+              radial-gradient(900px 500px at -10% 0%, #F2F7FB 0%, transparent 60%),
+              var(--bg);
+  color: var(--text);
+  font-feature-settings: "ss01" on, "ss02" on;
 }
 
+/* ======================
+   Helpers heredados
+   ====================== */
+.container-max { @apply max-w-7xl mx-auto px-4; }
+.section      { @apply py-16 md:py-24; }
 
-body {
-@apply bg-base-bg text-base-text;
+/* Encabezados */
+.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight text-slate-900; }
+.h2 { @apply text-3xl md:text-4xl font-semibold text-slate-900; }
+.muted { color: var(--muted); }
+
+/* Tarjetas y elementos */
+.card{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow, 0 10px 25px -12px rgba(16,24,40,.12));
+  backdrop-filter: saturate(1.1);
 }
 
+/* Botones */
+.btn{
+  @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.02);
+}
+.btn-primary{
+  background: var(--brand);
+  color: white;
+}
+.btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, #ffffff 75%); }
 
-.container-max { @apply max-w-6xl mx-auto px-4; }
-.section { @apply py-16 md:py-24; }
-.card { @apply bg-base-card/80 backdrop-blur rounded-2xl shadow-soft border border-white/5; }
-.h1 { @apply text-3xl md:text-5xl font-semibold tracking-tight; }
-.h2 { @apply text-2xl md:text-4xl font-semibold; }
-.muted { @apply text-sm text-gray-300; }
-.btn { @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-medium transition; }
-.btn-primary { @apply bg-white text-black hover:opacity-90; }
-.btn-secondary { @apply bg-transparent border border-white/30 text-white hover:bg-white/10; }
+.btn-secondary{
+  background: var(--brand-100);
+  color: var(--brand);
+  border: 1px solid color-mix(in srgb, var(--brand) 12%, #ffffff 88%);
+}
+.btn-secondary:hover{ filter: brightness(0.98); }
+
+/* Inputs */
+input, textarea{
+  @apply rounded-xl w-full px-4 py-3 outline-none transition;
+  background: #FAFBFC;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+input:focus, textarea:focus{
+  border-color: color-mix(in srgb, var(--brand) 45%, #ffffff 55%);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, #ffffff 80%);
+}
+
+/* Navbar (sticky) */
+header{
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-nav, 0 6px 20px -10px rgba(16,24,40,.18));
+}
+header a{ @apply text-sm text-slate-700; }
+header a:hover{ color: var(--brand); }
+
+/* Hero */
+#inicio{
+  position: relative;
+}
+#inicio::after{
+  /* overlay más fino y profesional */
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(23,59,95,.35) 0%, rgba(23,59,95,.25) 35%, rgba(0,0,0,.10) 100%);
+  pointer-events: none;
+}
+/* Texto del hero en blanco para asegurar contraste sobre la imagen */
+#inicio .h1, #inicio p, #inicio .btn{ color: #fff; }
+#inicio .btn-secondary{
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.28);
+  color: #fff;
+}
+#inicio .btn-secondary:hover{ background: rgba(255,255,255,.22); }
+
+/* Divisores suaves entre secciones */
+.section + .section{
+  background:
+    linear-gradient(180deg, rgba(23,59,95,0.035), rgba(23,59,95,0.00));
+}
+
+/* Listas con checks */
+ul li svg{ color: var(--brand); }
+
+/* Galería de éxitos */
+figure.card{ overflow: hidden; }
+figure.card img{ transition: transform .5s ease; }
+figure.card:hover img{ transform: scale(1.03); }
+
+/* Footer */
+footer{
+  background: #0F172A;
+  color: #E5E7EB;
+}
+footer a:hover{ color: #fff; text-decoration: underline; }
+
+/* ======================
+   Overrides seguros
+   (para no tocar estructura)
+   ====================== */
+
+/* Muchos componentes usaban text-gray-200. En tema claro sería muy pálido.
+   Lo reasignamos a un gris legible. */
+.text-gray-200{ color: #475569 !important; }
+/* Y algunos iconos usaban text-white: no tocar (beneficia el Hero). */
+
+/* Iconos de Lucide en tarjetas: coherentes con el primario */
+.card svg{ color: var(--brand); }
+
+/* Badges */
+.badge, .Badge{
+  @apply inline-flex items-center rounded-full px-3 py-1 text-xs;
+  background: color-mix(in srgb, var(--brand) 10%, #ffffff 90%);
+  color: var(--brand);
+}
