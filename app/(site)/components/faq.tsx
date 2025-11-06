@@ -1,46 +1,43 @@
-import { Accordion } from '@/components/ui/accordion';
+'use client';
+import { useState } from "react";
 
 const items = [
-  {
-    q: '¿Qué modalidades ofrecen?',
-    a: 'Trabajamos con VirtualSchool y Homeschool. Ambas integran recursos multimedia e interacción con docentes, según el plan elegido.'
-  },
-  {
-    q: '¿Qué niveles cubren?',
-    a: 'Preescolar, Primaria y Secundaria. La ruta y los objetivos se adaptan a la etapa del estudiante.'
-  },
-  {
-    q: '¿Manejan doble calendario escolar?',
-    a: 'Sí. Contamos con doble calendario: Regular e Internacional. Esto facilita la continuidad académica y la movilidad de las familias.'
-  },
-  {
-    q: '¿Incluyen idiomas?',
-    a: 'El inglés es un eje central del programa y también contamos con aprendizaje de francés como complemento.'
-  },
-  {
-    q: '¿Cómo es la metodología?',
-    a: 'Aprendizaje activo con videos, simulaciones, podcasts, e-books interactivos y proyectos. Se combinan clases guiadas, práctica y evaluaciones periódicas.'
-  },
-  {
-    q: '¿Cómo realizan el seguimiento?',
-    a: 'Diagnóstico inicial, metas por períodos, simulacros y reportes de progreso para estudiantes y familias. Ofrecemos acompañamiento 1:1 cuando se requiere.'
-  },
-  {
-    q: '¿Horarios y flexibilidad?',
-    a: 'Proponemos una planificación base y opciones flexibles por familia. Las sesiones y materiales se ajustan a la disponibilidad del estudiante.'
-  },
-  {
-    q: '¿Cómo puedo contactarlos o inscribirme?',
-    a: 'Escríbenos por WhatsApp al +507 6399-3131 o por Instagram @alafinternationalacademy. También puedes usar el formulario de la web en la sección Contacto.'
-  }
+  { q: "¿Qué modalidades ofrecen?", a: "VirtualSchool y Homeschool, ambas con recursos multimedia y docentes." },
+  { q: "¿Qué niveles cubren?", a: "Primaria, Secundaria y Preuniversitario (ruta por objetivos y reforzamiento por materias)." },
+  { q: "¿Manejan doble calendario escolar?", a: "Sí, Regular e Internacional, facilitando la continuidad académica." },
+  { q: "¿Incluyen idiomas?", a: "Inglés como eje central y francés como complemento." },
+  { q: "¿Cómo es la metodología?", a: "Aprendizaje activo con videos, simulaciones, podcasts y e-books; evaluaciones periódicas." },
+  { q: "¿Cómo realizan el seguimiento?", a: "Diagnóstico inicial, metas por período, simulacros, reportes a familias y tutorías 1:1." },
+  { q: "¿Horarios y flexibilidad?", a: "Planificación base y opciones flexibles según disponibilidad del estudiante." },
+  { q: "¿Cómo contacto e inscribo?", a: "WhatsApp Atención: +507 6399-3131. También Instagram @alafinternationalacademy o el formulario." }
 ];
 
 export function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+
   return (
     <section className="section">
       <div className="container-max">
         <h2 className="h2 mb-6">Preguntas frecuentes</h2>
-        <Accordion items={items} />
+
+        <div className="space-y-3">
+          {items.map((it, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className={`faq-item ${isOpen ? "faq-open" : ""}`}>
+                <button
+                  className={`faq-head ${isOpen ? "text-slate-900" : "text-slate-800"}`}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-medium">{it.q}</span>
+                  <span aria-hidden>{isOpen ? "−" : "+"}</span>
+                </button>
+                <div className={`faq-body ${isOpen ? "block" : "hidden"}`}>{it.a}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
