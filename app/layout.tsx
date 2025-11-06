@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import { Inter, Libre_Baskerville } from "next/font/google";
+// app/layout.tsx  (si tu carpeta es src/, ponlo en: src/app/layout.tsx)
 import "./globals.css";
-
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const libre = Libre_Baskerville({ subsets: ["latin"], weight: ["400","700"], variable: "--font-libre" });
-
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-title: "ALAF International Academy | Impulsa tu rendimiento académico",
-description: "Programas y mentorías académicas personalizadas para maximizar resultados. TODO: reemplazar copy con contenido real.",
-openGraph: {
-title: "ALAF International Academy",
-description: "Mentorías y programas académicos personalizados.",
-url: "https://alaf.example", // TODO: dominio real
-siteName: "ALAF International Academy",
-images: [{ url: "/alaf/hero.jpg", width: 1200, height: 630, alt: "ALAF Hero" }],
-type: "website"
-},
-icons: {
-icon: "/alaf/logo.png",
-shortcut: "/alaf/logo.png",
-apple: "/alaf/logo.png"
-}
+  title: "ALAF International Academy",
+  description: "Programas académicos y preuniversitarios — ALAF",
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-return (
-<html lang="es" className={`${inter.variable} ${libre.variable}`}>
-<body>{children}</body>
-</html>
-);
+  return (
+    <html lang="es">
+      <body>
+        {/* HOTFIX de verificación: esto DEBE colorear el fondo.
+            Si lo ves, los estilos están entrando. Luego puedes borrar este bloque. */}
+        <style
+          // @ts-ignore
+          global
+          dangerouslySetInnerHTML={{
+            __html: `
+              :root{
+                --ink:#2B2F33; --celeste:#AEE3EB; --lime:#B7D96B; --pink:#E8C7DC; --outline:#5C5C5C;
+                --bg:#FAFCFE; --surface:#FFFFFF; --border:#E7EDF3; --text:#0F172A; --muted:#475569;
+              }
+              body{ background: radial-gradient(800px 420px at -10% 0%, #E7F7FB 0%, transparent 60%), #FAFCFE !important; }
+              .btn-primary{ background:#2B2F33 !important; color:#fff !important; }
+              header a:hover{ color:#2B2F33 !important; }
+            `,
+          }}
+        />
+        {children}
+      </body>
+    </html>
+  );
 }
