@@ -15,7 +15,7 @@
 
   /* colores del logo */
   --ink:     theme('colors.brand.ink');      /* primario oscuro corporativo */
-  --celeste: theme('colors.brand.celeste');  /* acento */
+  --celeste: theme('colors.brand.celeste');  /* acento celeste */
   --lime:    theme('colors.brand.lime');
   --pink:    theme('colors.brand.pink');
   --outline: theme('colors.brand.outline');
@@ -30,23 +30,23 @@ body{
   background:
     radial-gradient(1000px 520px at 85% -10%, color-mix(in srgb, var(--celeste) 28%, #ffffff 72%) 0%, transparent 60%),
     radial-gradient(800px 420px at -10% 0%, #F2F7FB 0%, transparent 58%),
-    var(--bg);
+    var(--bg) !important;
   color: var(--text);
 }
 
 /* Helpers */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
-.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink); }
-.h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink); }
-.muted { color: var(--muted); }
+.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
+.h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
+.muted { color: var(--muted) !important; }
 
 /* Tarjetas */
 .card{
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
   border-radius: var(--radius);
-  box-shadow: var(--shadow, 0 14px 30px -18px rgba(15,23,42,.18));
+  box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
 }
 
 /* Botones */
@@ -54,16 +54,16 @@ body{
   @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
 }
 .btn-primary{
-  background: var(--ink);
-  color: #fff;
+  background: var(--ink) !important;
+  color: #fff !important;
 }
 .btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
 .btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
 
 .btn-secondary{
-  background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%);
-  color: var(--ink);
-  border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%);
+  background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%) !important;
+  color: var(--ink) !important;
+  border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%) !important;
 }
 .btn-secondary:hover{ filter: brightness(0.98); }
 
@@ -82,10 +82,10 @@ input:focus, textarea:focus{
 
 /* Navbar */
 header{
-  background: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.92) !important;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-nav, 0 10px 25px -20px rgba(15,23,42,.28));
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 10px 25px -20px rgba(15,23,42,.28);
 }
 header a{ @apply text-sm text-slate-700; }
 header a:hover{ color: var(--ink); }
@@ -102,15 +102,15 @@ header a:hover{ color: var(--ink); }
       rgba(0,0,0,.12) 100%);
   pointer-events: none;
 }
-#inicio .h1, #inicio p, #inicio .btn{ color: #fff; }
+#inicio .h1, #inicio p, #inicio .btn{ color: #fff !important; }
 #inicio .btn-secondary{
-  background: rgba(255,255,255,.16);
-  border: 1px solid rgba(255,255,255,.28);
-  color: #fff;
+  background: rgba(255,255,255,.16) !important;
+  border: 1px solid rgba(255,255,255,.28) !important;
+  color: #fff !important;
 }
 
-/* Listas con ícono */
-ul li svg{ color: var(--celeste); }
+/* Listas con ícono (celeste del logo) */
+ul li svg{ color: var(--celeste) !important; }
 
 /* Servicios – “logos” redondos */
 .service-icon{
@@ -126,12 +126,12 @@ ul li svg{ color: var(--celeste); }
   height:.6rem;width:1.8rem;border-radius:9999px;
   border:1px solid #cbd5e1;background:#e2e8f0;
 }
-.dot[aria-current="true"]{ background: var(--celeste); border-color: var(--celeste); }
+.dot[aria-current="true"]{ background: var(--celeste) !important; border-color: var(--celeste) !important; }
 
 /* FAQ legible al abrir */
 .faq-item { border:1px solid var(--border); border-radius: var(--radius); }
 .faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
-.faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%); }
+.faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%) !important; }
 .faq-body { @apply px-4 pb-4 text-slate-800; }
 
 /* Footer */
