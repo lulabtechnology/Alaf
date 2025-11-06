@@ -6,23 +6,26 @@
    Tokens (logo + referencia)
    ====================== */
 :root{
-  --bg:        theme(colors.neutralx.bg);
-  --surface:   theme(colors.neutralx.surface);
-  --border:    theme(colors.neutralx.border);
-  --text:      theme(colors.neutralx.text);
-  --muted:     theme(colors.neutralx.muted);
+  /* neutrales UI */
+  --bg:      theme('colors.neutralx.bg');
+  --surface: theme('colors.neutralx.surface');
+  --border:  theme('colors.neutralx.border');
+  --text:    theme('colors.neutralx.text');
+  --muted:   theme('colors.neutralx.muted');
 
-  --ink:       theme(colors.brand.ink);     /* primario: gris carbón elegante */
-  --celeste:   theme(colors.brand.celeste); /* del logo */
-  --lime:      theme(colors.brand.lime);    /* del logo */
-  --pink:      theme(colors.brand.pink);    /* del logo */
-  --outline:   theme(colors.brand.outline); /* contorno del logo */
+  /* colores del logo */
+  --ink:     theme('colors.brand.ink');      /* primario oscuro corporativo */
+  --celeste: theme('colors.brand.celeste');  /* acento */
+  --lime:    theme('colors.brand.lime');
+  --pink:    theme('colors.brand.pink');
+  --outline: theme('colors.brand.outline');
 
   --radius: 1rem;
 }
 
-/* Fondo claro con acentos muy suaves (celeste del logo) */
 html, body { scroll-behavior: smooth; }
+
+/* Fondo claro con acento celeste muy suave */
 body{
   background:
     radial-gradient(1000px 520px at 85% -10%, color-mix(in srgb, var(--celeste) 28%, #ffffff 72%) 0%, transparent 60%),
@@ -34,8 +37,8 @@ body{
 /* Helpers */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
-.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight text-[color:var(--ink)]; }
-.h2 { @apply text-3xl md:text-4xl font-semibold text-[color:var(--ink)]; }
+.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink); }
+.h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink); }
 .muted { color: var(--muted); }
 
 /* Tarjetas */
@@ -46,7 +49,7 @@ body{
   box-shadow: var(--shadow, 0 14px 30px -18px rgba(15,23,42,.18));
 }
 
-/* Botones (look ref: sólido oscuro + suave pastel) */
+/* Botones */
 .btn{
   @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
 }
@@ -87,7 +90,7 @@ header{
 header a{ @apply text-sm text-slate-700; }
 header a:hover{ color: var(--ink); }
 
-/* Hero overlay (celeste + lime del logo, muy sutil) */
+/* Hero */
 #inicio{ position: relative; }
 #inicio::after{
   content: "";
@@ -106,10 +109,10 @@ header a:hover{ color: var(--ink); }
   color: #fff;
 }
 
-/* Bullets e iconos: usa celeste del logo */
+/* Listas con ícono */
 ul li svg{ color: var(--celeste); }
 
-/* Servicios (chips con colores del logo) */
+/* Servicios – “logos” redondos */
 .service-icon{
   display:inline-flex;align-items:center;justify-content:center;
   width:56px;height:56px;border-radius:9999px;
@@ -118,7 +121,7 @@ ul li svg{ color: var(--celeste); }
   color: var(--ink);
 }
 
-/* Dots del carrusel: visibles y en celeste */
+/* Dots carrusel */
 .dot{
   height:.6rem;width:1.8rem;border-radius:9999px;
   border:1px solid #cbd5e1;background:#e2e8f0;
@@ -132,13 +135,13 @@ ul li svg{ color: var(--celeste); }
 .faq-body { @apply px-4 pb-4 text-slate-800; }
 
 /* Footer */
-footer{ background: #0F172A; color:#E5E7EB; }
+footer{ background:#0F172A; color:#E5E7EB; }
 footer a:hover{ color:#fff; text-decoration: underline; }
 
-/* Legibilidad global (por si quedaron clases viejas) */
+/* Overrides de legibilidad para clases antiguas */
 .text-gray-300 { color:#64748b !important; }
 .text-gray-200 { color:#475569 !important; }
 
-/* Acentos secundarios (lime y pink del logo) para badges/etiquetas si las usas */
-.badge-lime  { background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
-.badge-pink  { background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
+/* Acentos secundarios del logo */
+.badge-lime{ background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
+.badge-pink{ background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
