@@ -6,17 +6,17 @@ const services = [
 {
 img: '/alaf/servicios/serv-1.jpg',
 title: 'Programa de admisión universitaria',
-desc: 'TODO: Diagnóstico, plan de estudio y simulacros enfocados en tu examen objetivo.'
+desc: 'Diagnóstico, plan de estudio y simulacros enfocados en tu examen objetivo.'
 },
 {
 img: '/alaf/servicios/serv-2.jpg',
 title: 'Mentorías de refuerzo por materias',
-desc: 'TODO: Matemática, Lectura Crítica, Ciencias, Inglés… sesiones 1:1 o grupales.'
+desc: 'Matemática, Lectura Crítica, Ciencias, Inglés… sesiones 1:1 o grupales.'
 },
 {
 img: '/alaf/servicios/serv-3.jpg',
 title: 'Preparación intensiva (bootcamps)',
-desc: 'TODO: Rutas aceleradas con foco en resultados y métricas semanales.'
+desc: 'Rutas aceleradas con foco en resultados y métricas semanales.'
 }
 ];
 
