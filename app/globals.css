@@ -1,120 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root{
-  --bg:      theme('colors.neutralx.bg');
-  --surface: theme('colors.neutralx.surface');
-  --border:  theme('colors.neutralx.border');
-  --text:    theme('colors.neutralx.text');
-  --muted:   theme('colors.neutralx.muted');
-
-  --ink:     theme('colors.brand.ink');
-  --celeste: theme('colors.brand.celeste');
-  --lime:    theme('colors.brand.lime');
-  --pink:    theme('colors.brand.pink');
-  --outline: theme('colors.brand.outline');
-
-  --radius: 1rem;
-}
-
-html, body { scroll-behavior: smooth; }
-
-body{
-  background:
-    radial-gradient(1000px 520px at 85% -10%, color-mix(in srgb, var(--celeste) 28%, #ffffff 72%) 0%, transparent 60%),
-    radial-gradient(800px 420px at -10% 0%, #F2F7FB 0%, transparent 58%),
-    var(--bg) !important;
-  color: var(--text);
-}
-
-.container-max { @apply max-w-7xl mx-auto px-4; }
-.section      { @apply py-16 md:py-24; }
-.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
-.h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
-.muted { color: var(--muted) !important; }
-
-.card{
-  background: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: var(--radius);
-  box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
-}
-
-.btn{ @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none; }
-.btn-primary{ background: var(--ink) !important; color: #fff !important; }
-.btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
-.btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
-
-.btn-secondary{
-  background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%) !important;
-  color: var(--ink) !important;
-  border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%) !important;
-}
-.btn-secondary:hover{ filter: brightness(0.98); }
-
-input, textarea{
-  @apply rounded-xl w-full px-4 py-3 outline-none transition;
-  background: #FAFBFC;
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-input::placeholder, textarea::placeholder{ color: #9aa7b3; }
-input:focus, textarea:focus{
-  border-color: color-mix(in srgb, var(--celeste) 60%, #ffffff 40%);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--celeste) 28%, #ffffff 72%);
-}
-
+/* ====== TOP BAR (rosado del logo) ====== */
 header{
-  background: rgba(255,255,255,.92) !important;
+  background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border) !important;
-  box-shadow: 0 10px 25px -20px rgba(15,23,42,.28);
+  border-bottom: 1px solid color-mix(in srgb, var(--pink) 38%, var(--border) 62%) !important;
+  box-shadow: 0 8px 22px -18px rgba(43,47,51,.28);
 }
-header a{ @apply text-sm text-slate-700; }
-header a:hover{ color: var(--ink); }
-
-#inicio{ position: relative; }
-#inicio::after{
-  content: "";
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--celeste) 35%, #000 0%) 0%,
-      rgba(0,0,0,.18) 55%,
-      rgba(0,0,0,.12) 100%);
-  pointer-events: none;
-}
-#inicio .h1, #inicio p, #inicio .btn{ color: #fff !important; }
-#inicio .btn-secondary{
-  background: rgba(255,255,255,.16) !important;
-  border: 1px solid rgba(255,255,255,.28) !important;
+header a{ color: #2B2F33; }            /* var(--ink) */
+header a:hover{ color: #2B2F33; text-decoration: underline; }
+header .btn-primary{
+  background: var(--ink) !important;   /* CTA oscuro para buen contraste */
   color: #fff !important;
 }
 
-ul li svg{ color: var(--celeste) !important; }
+/* ====== FOOTER (azul oscuro, visible) ====== */
+footer{
+  background: #0B2545 !important;  /* azul oscuro corporativo */
+  color: #E8EEF6 !important;
+}
+footer a{ color: #D7E3F5; }
+footer a:hover{ color: #ffffff; text-decoration: underline; }
 
-.service-icon{
+/* ====== PRIORIZA TU DINERO (íconos tipo logo redondos) ====== */
+.feature-icon{
   display:inline-flex;align-items:center;justify-content:center;
-  width:56px;height:56px;border-radius:9999px;
+  width:64px;height:64px;border-radius:9999px;
   background: radial-gradient(80% 80% at 30% 20%, #fff, color-mix(in srgb, var(--celeste) 14%, #fff 86%));
   border:1px solid color-mix(in srgb, var(--celeste) 22%, #e5e9ef 78%);
-  color: var(--ink);
+  color:#2B2F33; /* ink */
 }
 
-.dot{ height:.6rem;width:1.8rem;border-radius:9999px; border:1px solid #cbd5e1;background:#e2e8f0; }
-.dot[aria-current="true"]{ background: var(--celeste) !important; border-color: var(--celeste) !important; }
-
-.faq-item { border:1px solid var(--border); border-radius: var(--radius); }
-.faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
-.faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%) !important; }
-.faq-body { @apply px-4 pb-4 text-slate-800; }
-
-footer{ background:#0F172A; color:#E5E7EB; }
-footer a:hover{ color:#fff; text-decoration: underline; }
-
-.text-gray-300 { color:#64748b !important; }
-.text-gray-200 { color:#475569 !important; }
-
-.badge-lime{ background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
-.badge-pink{ background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
+/* ====== ¿Por qué estudiar? (checks más coloridos) ====== */
+.check-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:9999px;
+  background: radial-gradient(70% 70% at 30% 20%, color-mix(in srgb, var(--lime) 32%, #fff 68%), color-mix(in srgb, var(--celeste) 26%, #fff 74%));
+  border:1px solid color-mix(in srgb, var(--lime) 30%, var(--celeste) 70%);
+  color:#0F172A;
+  box-shadow: 0 4px 10px -6px rgba(15,23,42,.25);
+}
