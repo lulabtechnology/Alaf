@@ -1,7 +1,7 @@
 import { Clock, PiggyBank, LineChart } from "lucide-react";
 
-/** Sección "Prioriza tu dinero" (match con ./components/benefits) */
-export default function Benefits() {
+/** Sección "Prioriza tu dinero" */
+function Benefits() {
   const items = [
     {
       icon: PiggyBank,
@@ -42,3 +42,6 @@ export default function Benefits() {
     </section>
   );
 }
+
+export default Benefits;   // import Benefits from "./components/benefits"
+export { Benefits };      // import { Benefits } from "./components/benefits"
