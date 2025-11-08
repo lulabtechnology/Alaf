@@ -14,9 +14,7 @@ export function Hero() {
   const [i, setI] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setI((p) => (p + 1) % slides.length);
-    }, 5500);
+    const id = setInterval(() => setI((p) => (p + 1) % slides.length), 5500);
     return () => clearInterval(id);
   }, []);
 
@@ -32,31 +30,33 @@ export function Hero() {
           >
             <Image
               src={src}
-              alt="ALAF – estudiantes aprendiendo felices"
+              alt="ALAF – estudiantes felices por sus logros"
               fill
               priority={idx === 0}
+              quality={95}
+              sizes="(min-width: 1280px) 100vw, (min-width: 768px) 100vw, 100vw"
               className="object-cover"
             />
           </div>
         ))}
-        {/* overlay del hero lo maneja globals.css (#inicio::after) */}
+        {/* overlay oscuro suave viene de #inicio::after en globals.css */}
       </div>
 
-      {/* contenido */}
+      {/* contenido: panel legible */}
       <div className="absolute inset-0 flex items-center">
         <div className="container-max">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl hero-text-panel">
             <h1 className="h1 text-white">
               Aprender desde casa nunca fue tan emocionante.
             </h1>
-            <p className="mt-4 text-white/95 text-lg leading-relaxed">
+            <p className="mt-3 text-white/95 text-[17px] leading-relaxed">
               En <b>ALAF International Academy</b> te acompañamos a construir un camino
               educativo flexible, moderno y lleno de propósito. Tu hijo aprende a
               su ritmo, con docentes atentos, recursos digitales interactivos y el
               respaldo de una escuela internacional <b>100% virtual y homeschool</b>.
             </p>
-            <div className="mt-6 flex gap-3">
-              <Link href="#contacto" className="btn btn-primary">Contáctenos</Link>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="#contacto" className="btn btn-primary">✨ Enviar mensaje</Link>
               <Link href="#por-que-nosotros" className="btn btn-secondary">Saber más</Link>
             </div>
           </div>
