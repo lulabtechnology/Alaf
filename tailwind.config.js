@@ -26,10 +26,6 @@ module.exports = {
         },
       },
       borderRadius: { "2xl": "1rem" },
-      boxShadow: {
-        soft: "0 14px 30px -18px rgba(15,23,42,.18)",
-        nav: "0 10px 25px -20px rgba(15,23,42,.28)",
-      },
       maxWidth: { "7xl": "80rem" },
     },
   },
