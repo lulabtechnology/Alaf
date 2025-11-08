@@ -1,48 +1,29 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { BookOpenCheck, GraduationCap, School } from "lucide-react";
-
-type Service = { icon: React.ElementType; title: string; desc: string; badge?: string };
-
-const services: Service[] = [
-  {
-    icon: School,
-    title: "Primaria",
-    desc: "Acompañamiento integral, hábitos de estudio y bases sólidas en lectura, escritura, matemáticas y ciencias."
-  },
-  {
-    icon: BookOpenCheck,
-    title: "Secundaria",
-    desc: "Plan por objetivos, seguimiento semanal, recursos multimedia y reforzamiento por materias."
-  },
-  {
-    icon: GraduationCap,
-    title: "Preuniversitario",
-    desc: "Ruta enfocada en exámenes de admisión: diagnóstico, plan de estudio, simulacros y métricas de avance."
-  }
-];
-
 export function Services() {
   return (
-    <section id="servicios" className="section">
+    <section id="modalidades" className="section">
       <div className="container-max">
-        <h2 className="h2 mb-3">Nuestros servicios</h2>
-        <p className="text-slate-600 mb-8">
-          Programas sin fricción y orientados a resultados. Elige el nivel y personaliza la intensidad de acuerdo a tu meta.
-        </p>
+        <h2 className="h2 mb-6">🎓 Modalidades Educativas ALAF International Academy</h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s, i) => (
-            <Card key={i} className="overflow-hidden">
-              <CardHeader>
-                <div className="service-icon">
-                  <s.icon className="w-6 h-6" />
-                </div>
-                <CardTitle className="mt-4">{s.title}</CardTitle>
-                <CardDescription className="text-slate-600">{s.desc}</CardDescription>
-              </CardHeader>
-              <CardContent />
-            </Card>
-          ))}
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="card p-6">
+            <h3 className="text-xl font-semibold mb-2">🖥️ Virtual School</h3>
+            <p className="text-slate-700">
+              Nuestra modalidad Virtual School ofrece una experiencia escolar en vivo, donde los estudiantes se conectan en tiempo real con sus docentes y compañeros de lunes a jueves.
+              El horario de clases se adapta a la etapa de desarrollo de cada alumno, garantizando sesiones dinámicas, interactivas y acordes a su edad.
+              Aquí, los estudiantes disfrutan de un ambiente cercano, acompañamiento continuo, trabajo guiado y actividades colaborativas que fortalecen sus habilidades académicas, sociales y digitales.
+              Es la opción ideal para familias que desean estructura, acompañamiento y conexión diaria.
+            </p>
+          </div>
+
+          <div className="card p-6">
+            <h3 className="text-xl font-semibold mb-2">🏡 Homeschool Acompañado</h3>
+            <p className="text-slate-700">
+              En nuestra modalidad Homeschool, las familias disfrutan de la libertad de aprender a su propio ritmo, con la guía, supervisión y recursos educativos de ALAF.
+              Los estudiantes trabajan de manera flexible, avanzando según su estilo y ritmo personal, con fechas tope para entrega de actividades y presentación de evaluaciones, asegurando continuidad y progreso académico.
+              La familia recibe orientación, planificación y acompañamiento, mientras el estudiante desarrolla autonomía, disciplina y amor por aprender.
+              Es la opción perfecta para quienes valoran flexibilidad, independencia y una educación personalizada desde casa.
+            </p>
+          </div>
         </div>
       </div>
     </section>
