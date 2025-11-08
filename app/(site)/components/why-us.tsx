@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 
-const bullets = [
+const items = [
   "Educación 100% virtual y homeschool con guía personalizada.",
   "Horarios flexibles para adaptarse a la rutina familiar.",
   "Acompañamiento docente y emocional permanente.",
@@ -13,30 +13,19 @@ export function WhyUs() {
   return (
     <section id="por-que-nosotros" className="section">
       <div className="container-max">
-        <h2 className="h2 mb-2">¿Por qué elegir ALAF?</h2>
-        <p className="muted mb-8 max-w-3xl">
+        <h2 className="h2 mb-4">💡 Por qué elegir ALAF</h2>
+        <p className="text-slate-700 mb-6">
           En ALAF creemos que cada estudiante tiene su propio ritmo, sus talentos y su historia.
           Por eso, nuestro modelo educativo está diseñado para acompañar, inspirar y guiar, no solo enseñar.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {bullets.map((b, i) => (
-            <div key={i} className="flex items-start gap-3 bg-white/90 rounded-xl border border-[var(--border)] p-4">
-              <span className="check-badge mt-0.5">
-                <Check className="w-4 h-4" />
-              </span>
-              <span className="text-slate-800">{b}</span>
+          {items.map((t, i) => (
+            <div key={i} className="flex items-start gap-3 card p-4">
+              <span className="check-badge mt-1"><Check className="h-4 w-4" /></span>
+              <p className="text-slate-700">{t}</p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-6 bg-white/90 rounded-xl border border-[var(--border)] p-4">
-          <p className="text-slate-800">
-            <b>ALAF Panamá</b> forma parte de los países adheridos al <b>Convenio de La Haya</b>.
-            Nuestra validación internacional proveniente de Estados Unidos se realiza mediante
-            <b> Notarización y Apostilla</b>, por lo que los estudiantes pueden continuar sus
-            estudios en cualquier parte del mundo.
-          </p>
         </div>
       </div>
     </section>
