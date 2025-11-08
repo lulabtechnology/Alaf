@@ -18,37 +18,39 @@ export function About() {
             acompañamiento cercano a las familias. La meta es la misma en todos los niveles (preescolar, primaria y
             secundaria): que el estudiante disfrute aprender y demuestre progreso real con métricas y evidencias.
           </p>
-          <div className="mt-6 grid gap-3">
-            <div className="card p-4">
-              <ul className="space-y-2 text-slate-800">
-                <li>Mentorías y seguimiento 1:1 con reportes periódicos para la familia.</li>
-                <li>Recursos digitales interactivos y metodología lúdica para mantener alta motivación.</li>
-                <li>Doble calendario (Regular / Internacional) y horarios flexibles según tu necesidad.</li>
-                <li>Idiomas: prioridad en <b>inglés</b> y programa de <b>francés</b>.</li>
-              </ul>
-            </div>
+          <div className="mt-6 card p-4">
+            <ul className="space-y-2 text-slate-800">
+              <li>Mentorías y seguimiento 1:1 con reportes periódicos para la familia.</li>
+              <li>Recursos digitales interactivos y metodología lúdica para mantener alta motivación.</li>
+              <li>Doble calendario (Regular / Internacional) y horarios flexibles según tu necesidad.</li>
+              <li>Idiomas: prioridad en <b>inglés</b> y programa de <b>francés</b>.</li>
+            </ul>
           </div>
         </div>
 
-        {/* Columna visual opcional: puedes dejarla como está si ya tenías algo aquí */}
-        <div className="relative rounded-2xl border border-[var(--border)] bg-white/60 p-2">
-          <div className="rounded-xl h-full w-full bg-white grid place-items-center p-6 text-center">
-            <p className="text-slate-700">
-              Espacio para imagen/ilustración institucional (opcional).
-            </p>
-          </div>
+        {/* IMAGEN LATERAL (ANTES ERA PLACEHOLDER) */}
+        <div className="relative rounded-2xl overflow-hidden border border-[var(--border)] bg-white/60 min-h-[260px] md:min-h-[420px]">
+          <Image
+            src="/alaf/about/side.jpg"
+            alt="Padres e hijos aprendiendo con ALAF"
+            fill
+            quality={95}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
       </div>
 
-      {/* FOTO DE CIERRE DE SECCIÓN */}
+      {/* FOTO DE CIERRE DE SECCIÓN (ajuste de alto para evitar huecos) */}
       <div className="container-max mt-8">
-        <div className="relative rounded-xl overflow-hidden border border-[var(--border)]">
+        <div className="relative rounded-xl overflow-hidden border border-[var(--border)] h-[240px] md:h-[360px]">
           <Image
             src="/alaf/about/familias.jpg"
             alt="Familias ALAF aprendiendo desde casa"
-            width={1600}
-            height={900}
-            className="w-full h-full object-cover"
+            fill
+            quality={95}
+            sizes="(min-width: 1024px) 80vw, 100vw"
+            className="object-cover"
             priority={false}
           />
         </div>
