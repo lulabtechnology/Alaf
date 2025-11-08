@@ -2,31 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================================
-   BASE: variables con theme() dentro de @layer base (compila)
-   ========================================================= */
+/* ===== BASE mínima sin theme() para que SIEMPRE se vea CELESTE ===== */
 @layer base {
   :root{
-    /* neutrales UI */
-    --bg:      theme('colors.neutralx.bg');
-    --surface: theme('colors.neutralx.surface');
-    --border:  theme('colors.neutralx.border');
-    --text:    theme('colors.neutralx.text');
-    --muted:   theme('colors.neutralx.muted');
+    /* Colores directos */
+    --bg:      #FAFCFE;
+    --surface: #FFFFFF;
+    --border:  #E7EDF3;
+    --text:    #0F172A;
+    --muted:   #475569;
 
-    /* colores del logo */
-    --ink:     theme('colors.brand.ink');      /* gris carbón (titulares, botón primario) */
-    --celeste: theme('colors.brand.celeste');  /* acento celeste */
-    --lime:    theme('colors.brand.lime');     /* acento lima */
-    --pink:    theme('colors.brand.pink');     /* acento rosado */
-    --outline: theme('colors.brand.outline');  /* contorno gris */
+    --ink:     #2B2F33;
+    --celeste: #AEE3EB; /* acento */
+    --lime:    #B7D96B;
+    --pink:    #E8C7DC;
+    --outline: #5C5C5C;
 
     --radius: 1rem;
   }
 
   html, body { scroll-behavior: smooth; }
 
-  /* ===== Fondo general CELESTITO (más visible) ===== */
   body{
     background:
       radial-gradient(1100px 580px at 85% -10%,
@@ -41,11 +37,13 @@
     color: var(--text);
   }
 
-  /* headings base */
   .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
   .h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
   .muted { color: var(--muted) !important; }
 }
+
+/* (el resto de tus reglas puede quedarse igual que ya tienes) */
+
 
 /* =========================================================
    HELPERS / LAYOUT
