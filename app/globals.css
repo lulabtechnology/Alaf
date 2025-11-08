@@ -2,49 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ======================
-   TOKENS (logo ALAF + UI clara)
-   ====================== */
-:root{
-  /* neutrales UI */
-  --bg:      theme('colors.neutralx.bg');
-  --surface: theme('colors.neutralx.surface');
-  --border:  theme('colors.neutralx.border');
-  --text:    theme('colors.neutralx.text');
-  --muted:   theme('colors.neutralx.muted');
+/* =========================================================
+   BASE: variables con theme() dentro de @layer base (compila)
+   ========================================================= */
+@layer base {
+  :root{
+    /* neutrales UI */
+    --bg:      theme('colors.neutralx.bg');
+    --surface: theme('colors.neutralx.surface');
+    --border:  theme('colors.neutralx.border');
+    --text:    theme('colors.neutralx.text');
+    --muted:   theme('colors.neutralx.muted');
 
-  /* colores del logo */
-  --ink:     theme('colors.brand.ink');      /* gris carbón (titulares, botón primario) */
-  --celeste: theme('colors.brand.celeste');  /* acento celeste */
-  --lime:    theme('colors.brand.lime');     /* acento lima */
-  --pink:    theme('colors.brand.pink');     /* acento rosado */
-  --outline: theme('colors.brand.outline');  /* contorno gris */
+    /* colores del logo */
+    --ink:     theme('colors.brand.ink');      /* gris carbón (titulares, botón primario) */
+    --celeste: theme('colors.brand.celeste');  /* acento celeste */
+    --lime:    theme('colors.brand.lime');     /* acento lima */
+    --pink:    theme('colors.brand.pink');     /* acento rosado */
+    --outline: theme('colors.brand.outline');  /* contorno gris */
 
-  --radius: 1rem;
+    --radius: 1rem;
+  }
+
+  html, body { scroll-behavior: smooth; }
+
+  /* ===== Fondo general celestito (más visible) ===== */
+  body{
+    background:
+      radial-gradient(1100px 580px at 85% -10%,
+        color-mix(in srgb, var(--celeste) 35%, #ffffff 65%) 0%,
+        transparent 60%
+      ),
+      radial-gradient(900px 480px at -10% 0%,
+        #E9F6FB 0%,
+        transparent 58%
+      ),
+      var(--bg) !important;
+    color: var(--text);
+  }
+
+  /* headings base */
+  .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
+  .h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
+  .muted { color: var(--muted) !important; }
 }
 
-html, body { scroll-behavior: smooth; }
-
-/* ======================
-   BASE
-   ====================== */
-body{
-  /* fondo claro con acento celeste suave */
-  background:
-    radial-gradient(1000px 520px at 85% -10%, color-mix(in srgb, var(--celeste) 28%, #ffffff 72%) 0%, transparent 60%),
-    radial-gradient(800px 420px at -10% 0%, #F2F7FB 0%, transparent 58%),
-    var(--bg) !important;
-  color: var(--text);
-}
-
-/* helpers */
+/* =========================================================
+   HELPERS / LAYOUT
+   ========================================================= */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
-
-/* headings */
-.h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
-.h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
-.muted { color: var(--muted) !important; }
 
 /* tarjetas */
 .card{
@@ -54,9 +61,9 @@ body{
   box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
 }
 
-/* ======================
+/* =========================================================
    BOTONES
-   ====================== */
+   ========================================================= */
 .btn{
   @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
 }
@@ -75,9 +82,9 @@ body{
 }
 .btn-secondary:hover{ filter: brightness(0.98); }
 
-/* ======================
+/* =========================================================
    FORM
-   ====================== */
+   ========================================================= */
 input, textarea{
   @apply rounded-xl w-full px-4 py-3 outline-none transition;
   background: #FAFBFC;
@@ -90,9 +97,9 @@ input:focus, textarea:focus{
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--celeste) 28%, #ffffff 72%);
 }
 
-/* ======================
+/* =========================================================
    NAVBAR (TOP BAR ROSADO)
-   ====================== */
+   ========================================================= */
 header{
   background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
   backdrop-filter: blur(10px);
@@ -106,9 +113,9 @@ header .btn-primary{
   color: #fff !important;
 }
 
-/* ======================
+/* =========================================================
    HERO
-   ====================== */
+   ========================================================= */
 #inicio{ position: relative; }
 #inicio::after{
   content: "";
@@ -127,9 +134,23 @@ header .btn-primary{
   color: #fff !important;
 }
 
-/* ======================
+/* Panel legible del hero (para que el blanco se lea en desktop) */
+.hero-text-panel{
+  background: linear-gradient(
+    180deg,
+    rgba(8, 21, 36, .52) 0%,
+    rgba(8, 21, 36, .46) 100%
+  );
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1.35rem;
+  box-shadow: 0 24px 60px -28px rgba(2,8,23,.45);
+}
+
+/* =========================================================
    SECCIONES DESTACADAS
-   ====================== */
+   ========================================================= */
 
 /* Prioriza tu dinero — íconos tipo “logo” */
 .feature-icon{
@@ -159,7 +180,7 @@ header .btn-primary{
   color: var(--ink);
 }
 
-/* Dots carrusel (Testimonios) */
+/* Dots carrusel (Hero/Testimonios) */
 .dot{
   height:.6rem;width:1.8rem;border-radius:9999px;
   border:1px solid #cbd5e1;background:#e2e8f0;
@@ -172,9 +193,9 @@ header .btn-primary{
 .faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%) !important; }
 .faq-body { @apply px-4 pb-4 text-slate-800; }
 
-/* ======================
+/* =========================================================
    FOOTER (AZUL OSCURO)
-   ====================== */
+   ========================================================= */
 footer{
   background: #0B2545 !important;  /* azul oscuro visible */
   color: #E8EEF6 !important;
@@ -182,9 +203,9 @@ footer{
 footer a{ color: #D7E3F5; }
 footer a:hover{ color: #ffffff; text-decoration: underline; }
 
-/* ======================
+/* =========================================================
    OVERRIDES DE LEGIBILIDAD
-   ====================== */
+   ========================================================= */
 .text-gray-300 { color:#64748b !important; }
 .text-gray-200 { color:#475569 !important; }
 
