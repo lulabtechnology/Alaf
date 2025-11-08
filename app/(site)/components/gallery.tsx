@@ -1,8 +1,10 @@
 // app/(site)/components/gallery.tsx
 "use client";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+/** 18 imágenes esperadas en /public/alaf/galeria/1.jpg ... /18.jpg  */
 const IMAGES = Array.from({ length: 18 }, (_, i) => `/alaf/galeria/${i + 1}.jpg`);
 
 function chunk<T>(arr: T[], size: number): T[][] {
@@ -12,18 +14,23 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 export default function Gallery() {
-  const slides = chunk(IMAGES, 3); // 6 slides * 3 imágenes
+  const slides = chunk(IMAGES, 3);      // 6 slides * 3 imágenes
   const [index, setIndex] = useState(0);
   const timer = useRef<number | null>(null);
 
   // autoplay cada 4s
   useEffect(() => {
-    timer.current && window.clearInterval(timer.current);
+    if (timer.current) {
+      window.clearInterval(timer.current);
+    }
     timer.current = window.setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, 4000);
+
     return () => {
-      timer.current && window.clearInterval(timer.current);
+      if (timer.current) {
+        window.clearInterval(timer.current);
+      }
     };
   }, [slides.length]);
 
@@ -33,7 +40,7 @@ export default function Gallery() {
         <h2 className="h2 mb-6">Galería</h2>
 
         <div className="relative overflow-hidden rounded-3xl bg-white shadow">
-          {/* track */}
+          {/* Pista deslizante */}
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}
@@ -48,6 +55,34 @@ export default function Gallery() {
                         alt={`Galería ${gi * 3 + si + 1}`}
                         fill
                         sizes="(max-width: 768px) 33vw, (max-width: 1280px) 20vw, 360px"
-                        className="object-cover [object-position:center_30%]" // sube el encuadre
+                        /* sube el encuadre para no cortar cabezas */
+                        className="object-cover [object-position:center_30%]"
                         priority={gi === 0}
                         quality={85}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dots */}
+          <div className="absolute inset-x-0 bottom-3 flex justify-center gap-2">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Ir al slide ${i + 1}`}
+                aria-current={i === index}
+                onClick={() => setIndex(i)}
+                className={`h-2 w-6 rounded-full transition ${
+                  i === index ? "bg-sky-400" : "bg-slate-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
