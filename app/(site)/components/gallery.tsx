@@ -1,92 +1,53 @@
+// app/(site)/components/gallery.tsx
 "use client";
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const slides: string[][] = [
-  ["/alaf/galeria/slide-1-1.jpg", "/alaf/galeria/slide-1-2.jpg", "/alaf/galeria/slide-1-3.jpg"],
-  ["/alaf/galeria/slide-2-1.jpg", "/alaf/galeria/slide-2-2.jpg", "/alaf/galeria/slide-2-3.jpg"],
-  ["/alaf/galeria/slide-3-1.jpg", "/alaf/galeria/slide-3-2.jpg", "/alaf/galeria/slide-3-3.jpg"],
-  ["/alaf/galeria/slide-4-1.jpg", "/alaf/galeria/slide-4-2.jpg", "/alaf/galeria/slide-4-3.jpg"],
-  ["/alaf/galeria/slide-5-1.jpg", "/alaf/galeria/slide-5-2.jpg", "/alaf/galeria/slide-5-3.jpg"],
-  ["/alaf/galeria/slide-6-1.jpg", "/alaf/galeria/slide-6-2.jpg", "/alaf/galeria/slide-6-3.jpg"],
-];
+const IMAGES = Array.from({ length: 18 }, (_, i) => `/alaf/galeria/${i + 1}.jpg`);
 
-const allImages = slides.flat();
+function chunk<T>(arr: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
 
 export default function Gallery() {
-  const [i, setI] = useState(0);
+  const slides = chunk(IMAGES, 3); // 6 slides * 3 imágenes
+  const [index, setIndex] = useState(0);
+  const timer = useRef<number | null>(null);
 
+  // autoplay cada 4s
   useEffect(() => {
-    const id = setInterval(() => setI((p) => (p + 1) % slides.length), 4500);
-    return () => clearInterval(id);
-  }, []);
+    timer.current && window.clearInterval(timer.current);
+    timer.current = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+    }, 4000);
+    return () => {
+      timer.current && window.clearInterval(timer.current);
+    };
+  }, [slides.length]);
 
   return (
-    <section id="galeria" className="section container-max">
-      <h2 className="h2 mb-6">Galería</h2>
+    <section id="galeria" className="section">
+      <div className="container-max">
+        <h2 className="h2 mb-6">Galería</h2>
 
-      {/* MÓVIL: carrusel 3 imágenes por slide */}
-      <div className="md:hidden">
-        <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm p-3">
-          <div className="relative h-[52vw] min-h-[210px]">
-            {slides.map((triple, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-700 ${i === idx ? "opacity-100" : "opacity-0"}`}
-                aria-hidden={i !== idx}
-              >
-                <div className="grid grid-cols-3 gap-2 h-full">
-                  {triple.map((src) => (
-                    <div key={src} className="relative w-full h-full rounded-lg overflow-hidden">
+        <div className="relative overflow-hidden rounded-3xl bg-white shadow">
+          {/* track */}
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {slides.map((group, gi) => (
+              <div key={gi} className="min-w-full p-4">
+                <div className="grid grid-cols-3 gap-4">
+                  {group.map((src, si) => (
+                    <div key={si} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                       <Image
                         src={src}
-                        alt="Galería ALAF"
+                        alt={`Galería ${gi * 3 + si + 1}`}
                         fill
-                        quality={90}
-                        /* AJUSTE FORZADO: llena el cuadro aunque se pixele */
-                        className="object-fill"
-                        sizes="(max-width: 768px) 33vw, 33vw"
-                        unoptimized
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Dots */}
-          <div className="mt-3 flex justify-center gap-2">
-            {slides.map((_, idx) => (
-              <button
-                key={idx}
-                aria-label={`slide ${idx + 1}`}
-                aria-current={i === idx}
-                className={`h-2.5 w-6 rounded-full border ${i === idx ? "bg-[#AEE3EB] border-[#AEE3EB]" : "bg-slate-200 border-slate-300"}`}
-                onClick={() => setI(idx)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ESCRITORIO: grilla 3×N (caras arriba) */}
-      <div className="hidden md:grid grid-cols-3 gap-4">
-        {allImages.map((src) => (
-          <div key={src} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm">
-            <Image
-              src={src}
-              alt="Galería ALAF"
-              fill
-              quality={90}
-              className="object-cover object-top"
-              sizes="(min-width:1280px) 420px, 33vw"
-              unoptimized
-            />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+                        sizes="(max-width: 768px) 33vw, (max-width: 1280px) 20vw, 360px"
+                        className="object-cover [object-position:center_30%]" // sube el encuadre
+                        priority={gi === 0}
+                        quality={85}
