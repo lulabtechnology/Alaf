@@ -25,10 +25,10 @@ export function Benefits() {
 
           <div className="card p-6">
             <div className="feature-icon mb-4"><LineChart className="h-6 w-6" /></div>
-            <h3 className="text-xl font-semibold mb-2">📈 Observa tu progreso</h3>
+            <h3 className="text-xl font-semibold mb-2">💰 Optimiza tus recursos</h3>
             <p className="text-slate-600">
-              Celebramos cada logro. A través de evaluaciones, proyectos y reportes, verás cómo avanzas paso a paso hacia tus metas académicas y personales.
-            </p>
+              En ALAF estudias desde casa, evitando gastos de transporte y reduciendo costos excesivos en libros.
+Todo el material se encuentra disponible en formato digital, accesible y actualizado, para que inviertas en lo más importante: una educación moderna y de calidad.
           </div>
         </div>
       </div>
