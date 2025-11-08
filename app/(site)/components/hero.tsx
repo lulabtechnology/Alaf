@@ -14,9 +14,8 @@ export default function Hero() {
           fill
           priority
           quality={100}
-          /* AJUSTE FORZADO: SIEMPRE rellena el cuadro, aunque se distorsione */
+          /* AJUSTE FORZADO: siempre rellena el cuadro (aunque se distorsione) */
           className="object-fill"
-          /* tamaños grandes para desktop */
           sizes="(min-width:1600px) 1600px, (min-width:1280px) 1280px, (min-width:1024px) 1024px, 100vw"
           unoptimized
         />
@@ -30,7 +29,7 @@ export default function Hero() {
               Aprender desde casa nunca fue tan emocionante.
             </h1>
 
-            {/* En móvil se oculta: SOLO el título */}
+            {/* En móvil solo el título */}
             <p className="mt-3 text-white/95 text-[17px] leading-relaxed hidden md:block">
               En <b>ALAF International Academy</b> te acompañamos a construir un camino educativo
               flexible, moderno y lleno de propósito. Tu hijo aprende a su ritmo, con docentes
