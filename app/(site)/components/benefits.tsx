@@ -1,47 +1,37 @@
-import { Clock, PiggyBank, LineChart } from "lucide-react";
+import { Target, Clock, LineChart } from "lucide-react";
 
-/** Sección "Prioriza tu dinero" */
-function Benefits() {
-  const items = [
-    {
-      icon: PiggyBank,
-      title: "Invierte donde impacta",
-      desc: "Asignamos esfuerzo a lo que trae resultados: diagnóstico, plan y métrica.",
-    },
-    {
-      icon: Clock,
-      title: "Ahorra tiempo",
-      desc: "Rutas claras y sesiones efectivas para avanzar sin fricción.",
-    },
-    {
-      icon: LineChart,
-      title: "Mide el progreso",
-      desc: "Simulacros y reportes para decidir con datos.",
-    },
-  ];
-
+export function Benefits() {
   return (
-    <section className="section" aria-labelledby="prioriza-title">
+    <section id="prioriza" className="section">
       <div className="container-max">
-        <h2 id="prioriza-title" className="h2 mb-8">Prioriza tu dinero</h2>
+        <h2 className="h2 mb-6">🌟 Prioriza tu aprendizaje</h2>
+
         <div className="grid md:grid-cols-3 gap-6">
-          {items.map((it, i) => {
-            const Icon = it.icon;
-            return (
-              <div key={i} className="card p-6">
-                <div className="feature-icon mb-4">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900">{it.title}</h3>
-                <p className="text-slate-600 mt-1">{it.desc}</p>
-              </div>
-            );
-          })}
+          <div className="card p-6">
+            <div className="feature-icon mb-4"><Target className="h-6 w-6" /></div>
+            <h3 className="text-xl font-semibold mb-2">🎯 Aprende con propósito</h3>
+            <p className="text-slate-600">
+              En ALAF cada actividad tiene sentido. Diseñamos experiencias de aprendizaje que conectan con la vida real, desarrollando habilidades para el presente y el futuro.
+            </p>
+          </div>
+
+          <div className="card p-6">
+            <div className="feature-icon mb-4"><Clock className="h-6 w-6" /></div>
+            <h3 className="text-xl font-semibold mb-2">⏰ Aprovecha tu tiempo</h3>
+            <p className="text-slate-600">
+              Nuestros programas se adaptan a ti. Ya sea en modalidad Virtual School o Homeschool, aprenderás a tu propio ritmo con guías claras, horarios flexibles y acompañamiento constante.
+            </p>
+          </div>
+
+          <div className="card p-6">
+            <div className="feature-icon mb-4"><LineChart className="h-6 w-6" /></div>
+            <h3 className="text-xl font-semibold mb-2">📈 Observa tu progreso</h3>
+            <p className="text-slate-600">
+              Celebramos cada logro. A través de evaluaciones, proyectos y reportes, verás cómo avanzas paso a paso hacia tus metas académicas y personales.
+            </p>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default Benefits;   // import Benefits from "./components/benefits"
-export { Benefits };      // import { Benefits } from "./components/benefits"
