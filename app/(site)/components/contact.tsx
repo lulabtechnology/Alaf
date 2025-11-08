@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Instagram, Mail, MapPin, Phone, Send, WhatsappIcon as WhatsApp } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone, Send, Whatsapp } from "lucide-react";
 import Image from "next/image";
 
 export function Contact() {
@@ -44,7 +44,7 @@ export function Contact() {
               href="https://wa.me/50763993131"
               className="btn btn-primary mt-2 inline-flex items-center gap-2"
             >
-              <WhatsApp className="h-5 w-5" /> Chatear ahora por WhatsApp
+              <Whatsapp className="h-5 w-5" /> Chatear ahora por WhatsApp
             </a>
           </div>
 
