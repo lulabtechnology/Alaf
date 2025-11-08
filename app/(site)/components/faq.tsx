@@ -1,42 +1,40 @@
-'use client';
-import { useState } from "react";
-
-const items = [
-  { q: "¿Qué modalidades ofrecen?", a: "VirtualSchool y Homeschool, ambas con recursos multimedia y docentes." },
-  { q: "¿Qué niveles cubren?", a: "Primaria, Secundaria y Preuniversitario (ruta por objetivos y reforzamiento por materias)." },
-  { q: "¿Manejan doble calendario escolar?", a: "Sí, Regular e Internacional, facilitando la continuidad académica." },
-  { q: "¿Incluyen idiomas?", a: "Inglés como eje central y francés como complemento." },
-  { q: "¿Cómo es la metodología?", a: "Aprendizaje activo con videos, simulaciones, podcasts y e-books; evaluaciones periódicas." },
-  { q: "¿Cómo realizan el seguimiento?", a: "Diagnóstico inicial, metas por período, simulacros, reportes a familias y tutorías 1:1." },
-  { q: "¿Horarios y flexibilidad?", a: "Planificación base y opciones flexibles según disponibilidad del estudiante." },
-  { q: "¿Cómo contacto e inscribo?", a: "WhatsApp Atención: +507 6399-3131. También Instagram @alafinternationalacademy o el formulario." }
-];
-
 export function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const items = [
+    {
+      q: "¿Qué diferencia a ALAF de otras escuelas virtuales?",
+      a: "Nuestro acompañamiento humano. Detrás de cada estudiante hay un equipo real que guía, escucha y celebra cada avance.",
+    },
+    {
+      q: "¿Necesito experiencia previa en homeschool?",
+      a: "No. Te guiamos paso a paso con recursos, tutorías y orientación para padres.",
+    },
+    {
+      q: "¿Ofrecen doble calendario?",
+      a: "Sí. Puedes elegir entre el calendario panameño o el internacional, según tus necesidades.",
+    },
+    {
+      q: "¿Cómo se evalúa el aprendizaje?",
+      a: "Con diagnósticos, proyectos, rúbricas y reportes que muestran progreso real, no solo calificaciones.",
+    },
+    {
+      q: "¿Los títulos son válidos?",
+      a: "Sí. Los certificados pueden ser notarizados y apostillados para estudios en el extranjero.",
+    },
+  ];
 
   return (
-    <section className="section">
+    <section id="faq" className="section">
       <div className="container-max">
         <h2 className="h2 mb-6">Preguntas frecuentes</h2>
-
         <div className="space-y-3">
-          {items.map((it, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={i} className={`faq-item ${isOpen ? "faq-open" : ""}`}>
-                <button
-                  className={`faq-head ${isOpen ? "text-slate-900" : "text-slate-800"}`}
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-medium">{it.q}</span>
-                  <span aria-hidden>{isOpen ? "−" : "+"}</span>
-                </button>
-                <div className={`faq-body ${isOpen ? "block" : "hidden"}`}>{it.a}</div>
-              </div>
-            );
-          })}
+          {items.map((it, idx) => (
+            <details key={idx} className="faq-item bg-white/90">
+              <summary className="faq-head">
+                <span className="font-medium text-slate-900">{it.q}</span>
+              </summary>
+              <div className="faq-body">{it.a}</div>
+            </details>
+          ))}
         </div>
       </div>
     </section>
