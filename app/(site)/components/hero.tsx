@@ -10,6 +10,9 @@ const slides = [
   "/alaf/hero/slide-4.jpg",
 ];
 
+// Si aún lo ves borroso por /_next/image, pon esto en true:
+const USE_UNOPTIMIZED = true;
+
 export function Hero() {
   const [i, setI] = useState(0);
 
@@ -35,9 +38,12 @@ export function Hero() {
               priority={idx === 0}
               quality={95}
               sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
-              className="object-cover"
-              // ⚠ Si sigues viendo borroso en desktop, descomenta la siguiente línea:
-              // unoptimized
+              className="
+                object-cover
+                object-center
+                md:[object-position:center_30%]  /* sube el encuadre en desktop para no cortar cabezas */
+              "
+              unoptimized={USE_UNOPTIMIZED}
             />
           </div>
         ))}
