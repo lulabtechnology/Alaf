@@ -2,18 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== BASE mínima sin theme() para que SIEMPRE se vea CELESTE ===== */
+/* =================== VARIABLES (sin theme()) =================== */
 @layer base {
   :root{
-    /* Colores directos */
-    --bg:      #FAFCFE;
+    --bg:      #FAFCFE;   /* base muy clara */
     --surface: #FFFFFF;
     --border:  #E7EDF3;
     --text:    #0F172A;
     --muted:   #475569;
 
-    --ink:     #2B2F33;
-    --celeste: #AEE3EB; /* acento */
+    --ink:     #2B2F33;   /* gris carbón del logo */
+    --celeste: #AEE3EB;   /* celestito del logo */
     --lime:    #B7D96B;
     --pink:    #E8C7DC;
     --outline: #5C5C5C;
@@ -21,20 +20,29 @@
     --radius: 1rem;
   }
 
-  html, body { scroll-behavior: smooth; }
+  html, body { height: 100%; scroll-behavior: smooth; }
 
-  body{
+  /* ===== Capa de fondo CELESTE fija (está en layout) ===== */
+  .page-bg{
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background:
-      radial-gradient(1100px 580px at 85% -10%,
-        color-mix(in srgb, var(--celeste) 38%, #ffffff 62%) 0%,
+      radial-gradient(1200px 620px at 86% -12%,
+        color-mix(in srgb, var(--celeste) 40%, #ffffff 60%) 0%,
         transparent 60%
       ),
-      radial-gradient(900px 480px at -10% 0%,
+      radial-gradient(900px 520px at -10% 5%,
         #E9F6FB 0%,
         transparent 58%
       ),
-      var(--bg) !important;
+      var(--bg);
+  }
+
+  body{
     color: var(--text);
+    /* por si algún reset te metía fondo, forzamos transparente */
+    background: transparent !important;
   }
 
   .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
@@ -42,16 +50,10 @@
   .muted { color: var(--muted) !important; }
 }
 
-/* (el resto de tus reglas puede quedarse igual que ya tienes) */
-
-
-/* =========================================================
-   HELPERS / LAYOUT
-   ========================================================= */
+/* =================== LAYOUT & CARDS =================== */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
 
-/* tarjetas */
 .card{
   background: var(--surface) !important;
   border: 1px solid var(--border) !important;
@@ -59,30 +61,29 @@
   box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
 }
 
-/* =========================================================
-   BOTONES
-   ========================================================= */
-.btn{
-  @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
+/* =================== NAVBAR (rosado) =================== */
+header{
+  background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid color-mix(in srgb, var(--pink) 38%, var(--border) 62%) !important;
+  box-shadow: 0 8px 22px -18px rgba(43,47,51,.28);
 }
+header a{ color: var(--ink); }
+header a:hover{ color: var(--ink); text-decoration: underline; }
+header .btn-primary{ background: var(--ink) !important; color: #fff !important; }
 
-.btn-primary{
-  background: var(--ink) !important;
-  color: #fff !important;
-}
+/* =================== BOTONES =================== */
+.btn{ @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none; }
+.btn-primary{ background: var(--ink) !important; color: #fff !important; }
 .btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
 .btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
-
 .btn-secondary{
   background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%) !important;
   color: var(--ink) !important;
   border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%) !important;
 }
-.btn-secondary:hover{ filter: brightness(0.98); }
 
-/* =========================================================
-   FORM
-   ========================================================= */
+/* =================== FORM =================== */
 input, textarea{
   @apply rounded-xl w-full px-4 py-3 outline-none transition;
   background: #FAFBFC;
@@ -95,44 +96,14 @@ input:focus, textarea:focus{
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--celeste) 28%, #ffffff 72%);
 }
 
-/* =========================================================
-   NAVBAR (TOP BAR ROSADO)
-   ========================================================= */
-header{
-  background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid color-mix(in srgb, var(--pink) 38%, var(--border) 62%) !important;
-  box-shadow: 0 8px 22px -18px rgba(43,47,51,.28);
-}
-header a{ color: var(--ink); }
-header a:hover{ color: var(--ink); text-decoration: underline; }
-header .btn-primary{
-  background: var(--ink) !important;
-  color: #fff !important;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
+/* =================== HERO =================== */
 #inicio{ position: relative; }
 #inicio::after{
   content: "";
   position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg,
-      rgba(0,0,0,.26) 0%,
-      rgba(0,0,0,.18) 55%,
-      rgba(0,0,0,.12) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.12) 100%);
   pointer-events: none;
 }
-#inicio .h1, #inicio p, #inicio .btn{ color: #fff !important; }
-#inicio .btn-secondary{
-  background: rgba(255,255,255,.16) !important;
-  border: 1px solid rgba(255,255,255,.28) !important;
-  color: #fff !important;
-}
-
-/* Panel legible del hero */
 .hero-text-panel{
   background: linear-gradient(180deg, rgba(8,21,36,.58) 0%, rgba(8,21,36,.5) 100%);
   backdrop-filter: blur(6px);
@@ -142,9 +113,7 @@ header .btn-primary{
   box-shadow: 0 24px 60px -28px rgba(2,8,23,.45);
 }
 
-/* =========================================================
-   SECCIONES DESTACADAS
-   ========================================================= */
+/* =================== “Prioriza tu dinero” y checks =================== */
 .feature-icon{
   display:inline-flex;align-items:center;justify-content:center;
   width:64px;height:64px;border-radius:9999px;
@@ -160,41 +129,21 @@ header .btn-primary{
   color:#0F172A;
   box-shadow: 0 4px 10px -6px rgba(15,23,42,.25);
 }
-.service-icon{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:56px;height:56px;border-radius:9999px;
-  background: radial-gradient(80% 80% at 30% 20%, #fff, color-mix(in srgb, var(--celeste) 14%, #fff 86%));
-  border:1px solid color-mix(in srgb, var(--celeste) 22%, #e5e9ef 78%);
-  color: var(--ink);
-}
 
-/* Dots carrusel (Hero/Testimonios) */
-.dot{
-  height:.6rem;width:1.8rem;border-radius:9999px;
-  border:1px solid #cbd5e1;background:#e2e8f0;
-}
+/* =================== DOTS (hero/testimonios) =================== */
+.dot{ height:.6rem;width:1.8rem;border-radius:9999px;border:1px solid #cbd5e1;background:#e2e8f0; }
 .dot[aria-current="true"]{ background: var(--celeste) !important; border-color: var(--celeste) !important; }
 
-/* FAQ legible al abrir */
+/* =================== FAQ =================== */
 .faq-item { border:1px solid var(--border); border-radius: var(--radius); }
 .faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
 .faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%) !important; }
 .faq-body { @apply px-4 pb-4 text-slate-800; }
 
-/* =========================================================
-   FOOTER (AZUL OSCURO)
-   ========================================================= */
-footer{
-  background: #0B2545 !important;
-  color: #E8EEF6 !important;
-}
-footer a{ color: #D7E3F5; }
-footer a:hover{ color: #ffffff; text-decoration: underline; }
+/* =================== FOOTER =================== */
+footer{ background: #0B2545 !important; color: #E8EEF6 !important; }
+footer a{ color: #D7E3F5; } footer a:hover{ color: #ffffff; text-decoration: underline; }
 
-/* Legibilidad */
+/* Legibilidad genérica */
 .text-gray-300 { color:#64748b !important; }
 .text-gray-200 { color:#475569 !important; }
-
-/* Badges */
-.badge-lime{ background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
-.badge-pink{ background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
