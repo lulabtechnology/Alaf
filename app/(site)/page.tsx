@@ -1,15 +1,15 @@
 // app/(site)/page.tsx
-import Navbar from "./components/navbar";
-import Hero from "./components/hero";           // ✅ default import
-import About from "./components/about";
-import WhyUs from "./components/why-us";
-import Benefits from "./components/benefits";
-import Services from "./components/services";
-import Gallery from "./components/gallery";     // ✅ default import
-import Testimonials from "./components/testimonials";
-import Faq from "./components/faq";
-import Contact from "./components/contact";
-import Footer from "./components/footer";
+import { Navbar } from "./components/navbar";          // named export
+import Hero from "./components/hero";                   // default export
+import { About } from "./components/about";            // named export
+import { WhyUs } from "./components/why-us";           // named export
+import { Benefits } from "./components/benefits";      // named export
+import { Services } from "./components/services";      // named export
+import Gallery from "./components/gallery";            // default export
+import { Testimonials } from "./components/testimonials"; // named export (si tu archivo lo exporta así)
+import { Faq } from "./components/faq";                // named export
+import { Contact } from "./components/contact";        // named export
+import { Footer } from "./components/footer";          // named export
 
 export default function Page() {
   return (
