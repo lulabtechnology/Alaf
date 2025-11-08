@@ -34,12 +34,11 @@ export function Hero() {
               fill
               priority={idx === 0}
               quality={95}
-              sizes="(min-width: 1280px) 100vw, (min-width: 768px) 100vw, 100vw"
+              sizes="100vw"
               className="object-cover"
             />
           </div>
         ))}
-        {/* overlay oscuro suave viene de #inicio::after en globals.css */}
       </div>
 
       {/* contenido: panel legible */}
