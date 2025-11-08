@@ -5,7 +5,6 @@ import { About } from "./components/about";              // named export
 import { Benefits } from "./components/benefits";        // named export  (renombrado visualmente a "Prioriza tu aprendizaje")
 import { WhyUs } from "./components/why-us";             // named export
 import { Services } from "./components/services";        // named export
-import Gallery from "./components/gallery";              // default export
 import { Testimonials } from "./components/testimonials";// named export
 import { FAQ } from "./components/faq";                  // named export (ojo mayúsculas)
 import { Contact } from "./components/contact";          // named export
@@ -22,7 +21,6 @@ export default function Page() {
         <Benefits />
         <WhyUs />
         <Services />
-        <Gallery />
         <Testimonials />
         <FAQ />
         <Contact />
