@@ -28,7 +28,8 @@ export function Benefits() {
             <h3 className="text-xl font-semibold mb-2">💰 Optimiza tus recursos</h3>
             <p className="text-slate-600">
               En ALAF estudias desde casa, evitando gastos de transporte y reduciendo costos excesivos en libros.
-Todo el material se encuentra disponible en formato digital, accesible y actualizado, para que inviertas en lo más importante: una educación moderna y de calidad.
+Todo el material se encuentra disponible en formato digital, accesible y actualizado, para que inviertas en lo más importante una educación moderna y de calidad.
+            </p> 
           </div>
         </div>
       </div>
