@@ -28,8 +28,8 @@ export function About() {
           </div>
         </div>
 
-        {/* IMAGEN LATERAL (ANTES ERA PLACEHOLDER) */}
-        <div className="relative rounded-2xl overflow-hidden border border-[var(--border)] bg-white/60 min-h-[260px] md:min-h-[420px]">
+        {/* IMAGEN LATERAL */}
+        <div className="relative rounded-2xl overflow-hidden border border-[var(--border)] bg-white/60 h-[320px] md:h-[440px]">
           <Image
             src="/alaf/about/side.jpg"
             alt="Padres e hijos aprendiendo con ALAF"
@@ -41,9 +41,9 @@ export function About() {
         </div>
       </div>
 
-      {/* FOTO DE CIERRE DE SECCIÓN (ajuste de alto para evitar huecos) */}
+      {/* FOTO DE CIERRE DE SECCIÓN */}
       <div className="container-max mt-8">
-        <div className="relative rounded-xl overflow-hidden border border-[var(--border)] h-[240px] md:h-[360px]">
+        <div className="relative rounded-xl overflow-hidden border border-[var(--border)] h-[300px] md:h-[420px]">
           <Image
             src="/alaf/about/familias.jpg"
             alt="Familias ALAF aprendiendo desde casa"
@@ -51,7 +51,6 @@ export function About() {
             quality={95}
             sizes="(min-width: 1024px) 80vw, 100vw"
             className="object-cover"
-            priority={false}
           />
         </div>
       </div>
