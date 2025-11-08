@@ -1,24 +1,80 @@
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
+const slides = [
+  "/alaf/hero/slide-1.jpg",
+  "/alaf/hero/slide-2.jpg",
+  "/alaf/hero/slide-3.jpg",
+  "/alaf/hero/slide-4.jpg",
+];
 
 export function Hero() {
-return (
-<section id="inicio" className="relative h-[70vh] md:h-[80vh] w-full">
-<Image src="/alaf/hero.jpg" alt="ALAF hero" fill priority className="object-cover" />
-<div className="absolute inset-0 bg-black/50" />
-<div className="absolute inset-0 flex items-center">
-<div className="container-max">
-<div className="max-w-2xl space-y-6 text-white">
-<h1 className="h1 font-[family-name:var(--font-libre)]">Impulsa tu rendimiento académico con mentores expertos.</h1>
-<p className="text-lg text-gray-100">Planes de estudio personalizados que maximizan tus resultados. TODO: reemplazar por copy de Instagram.</p>
-<div className="flex gap-3">
-<a href="#contacto"><Button>Contáctenos</Button></a>
-<a href="#por-que-nosotros"><Button variant="secondary">Saber más</Button></a>
-</div>
-</div>
-</div>
-</div>
-</section>
-);
+  const [i, setI] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setI((p) => (p + 1) % slides.length);
+    }, 5500);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <section id="inicio" className="relative">
+      {/* slider */}
+      <div className="relative h-[64vh] md:h-[82vh] overflow-hidden">
+        {slides.map((src, idx) => (
+          <div
+            key={src}
+            className={`absolute inset-0 transition-opacity duration-700 ${i === idx ? "opacity-100" : "opacity-0"}`}
+            aria-hidden={i !== idx}
+          >
+            <Image
+              src={src}
+              alt="ALAF – estudiantes aprendiendo felices"
+              fill
+              priority={idx === 0}
+              className="object-cover"
+            />
+          </div>
+        ))}
+        {/* overlay del hero lo maneja globals.css (#inicio::after) */}
+      </div>
+
+      {/* contenido */}
+      <div className="absolute inset-0 flex items-center">
+        <div className="container-max">
+          <div className="max-w-2xl">
+            <h1 className="h1 text-white">
+              Aprender desde casa nunca fue tan emocionante.
+            </h1>
+            <p className="mt-4 text-white/95 text-lg leading-relaxed">
+              En <b>ALAF International Academy</b> te acompañamos a construir un camino
+              educativo flexible, moderno y lleno de propósito. Tu hijo aprende a
+              su ritmo, con docentes atentos, recursos digitales interactivos y el
+              respaldo de una escuela internacional <b>100% virtual y homeschool</b>.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <Link href="#contacto" className="btn btn-primary">Contáctenos</Link>
+              <Link href="#por-que-nosotros" className="btn btn-secondary">Saber más</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            aria-current={i === idx}
+            aria-label={`slide ${idx + 1}`}
+            className="dot"
+            onClick={() => setI(idx)}
+          />
+        ))}
+      </div>
+    </section>
+  );
 }
