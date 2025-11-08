@@ -10,7 +10,7 @@ const slides = [
   "/alaf/hero/slide-4.jpg",
 ];
 
-// Si aún lo ves borroso por /_next/image, pon esto en true:
+// Si luego quieres volver a la optimización de Next, pon en false
 const USE_UNOPTIMIZED = true;
 
 export function Hero() {
@@ -37,27 +37,26 @@ export function Hero() {
               fill
               priority={idx === 0}
               quality={95}
-              sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
-              className="
-                object-cover
-                object-center
-                md:[object-position:center_30%]  /* sube el encuadre en desktop para no cortar cabezas */
-              "
+              sizes="(min-width: 1600px) 1600px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
+              className="object-cover object-center md:[object-position:center_30%]"
               unoptimized={USE_UNOPTIMIZED}
             />
           </div>
         ))}
       </div>
 
-      {/* contenido: panel legible */}
+      {/* contenido */}
       <div className="absolute inset-0 flex items-center">
         <div className="container-max">
           <div className="max-w-2xl hero-text-panel">
-            <h1 className="h1 text-white">Aprender desde casa nunca fue tan emocionante.</h1>
+            <h1 className="h1 hero-title">
+              Aprender desde casa nunca fue tan emocionante.
+            </h1>
             <p className="mt-3 text-white/95 text-[17px] leading-relaxed">
-              En <b>ALAF International Academy</b> te acompañamos a construir un camino educativo flexible, moderno y lleno de propósito.
-              Tu hijo aprende a su ritmo, con docentes atentos, recursos digitales interactivos y el respaldo de una escuela internacional
-              <b> 100% virtual y homeschool</b>.
+              En <b>ALAF International Academy</b> te acompañamos a construir un camino
+              educativo flexible, moderno y lleno de propósito. Tu hijo aprende a su
+              ritmo, con docentes atentos, recursos digitales interactivos y el respaldo
+              de una escuela internacional <b>100% virtual y homeschool</b>.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="#contacto" className="btn btn-primary">✨ Enviar mensaje</Link>
