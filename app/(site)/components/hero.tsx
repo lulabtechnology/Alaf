@@ -10,7 +10,8 @@ const slides = [
   "/alaf/hero/slide-4.jpg",
 ];
 
-// Si luego quieres volver a la optimización de Next, pon en false
+// Sirve los JPG/PNG directamente (NO /_next/image). Perfecto para nitidez en desktop.
+// Si luego quieres volver al loader de Next, cambia a false.
 const USE_UNOPTIMIZED = true;
 
 export function Hero() {
@@ -36,8 +37,10 @@ export function Hero() {
               alt="ALAF – estudiantes felices por sus logros"
               fill
               priority={idx === 0}
-              quality={95}
-              sizes="(min-width: 1600px) 1600px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
+              quality={100}
+              // tamaños grandes para monitores grandes
+              sizes="(min-width: 1536px) 1536px, (min-width: 1280px) 1280px, (min-width: 1024px) 1024px, 100vw"
+              // no recortes feos: sube el encuadre en desktop
               className="object-cover object-center md:[object-position:center_30%]"
               unoptimized={USE_UNOPTIMIZED}
             />
@@ -48,15 +51,15 @@ export function Hero() {
       {/* contenido */}
       <div className="absolute inset-0 flex items-center">
         <div className="container-max">
-          <div className="max-w-2xl hero-text-panel">
-            <h1 className="h1 hero-title">
+          <div className="max-w-2xl rounded-2xl border border-white/20 bg-[rgba(8,21,36,.55)] backdrop-blur-md p-5 shadow-[0_24px_60px_-28px_rgba(2,8,23,.45)]">
+            <h1 className="text-white drop-shadow-[0_2px_12px_rgba(0,0,0,.35)] text-4xl md:text-5xl font-semibold tracking-tight">
               Aprender desde casa nunca fue tan emocionante.
             </h1>
             <p className="mt-3 text-white/95 text-[17px] leading-relaxed">
-              En <b>ALAF International Academy</b> te acompañamos a construir un camino
-              educativo flexible, moderno y lleno de propósito. Tu hijo aprende a su
-              ritmo, con docentes atentos, recursos digitales interactivos y el respaldo
-              de una escuela internacional <b>100% virtual y homeschool</b>.
+              En <b>ALAF International Academy</b> te acompañamos a construir un camino educativo
+              flexible, moderno y lleno de propósito. Tu hijo aprende a su ritmo, con docentes
+              atentos, recursos digitales interactivos y el respaldo de una escuela internacional
+              <b> 100% virtual y homeschool</b>.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Link href="#contacto" className="btn btn-primary">✨ Enviar mensaje</Link>
@@ -73,7 +76,8 @@ export function Hero() {
             key={idx}
             aria-current={i === idx}
             aria-label={`slide ${idx + 1}`}
-            className="dot"
+            className="h-2.5 w-6 rounded-full border border-slate-300 bg-slate-200 data-[current=true]:bg-[#AEE3EB] data-[current=true]:border-[#AEE3EB]"
+            data-current={i === idx}
             onClick={() => setI(idx)}
           />
         ))}
