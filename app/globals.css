@@ -26,11 +26,11 @@
 
   html, body { scroll-behavior: smooth; }
 
-  /* ===== Fondo general celestito (más visible) ===== */
+  /* ===== Fondo general CELESTITO (más visible) ===== */
   body{
     background:
       radial-gradient(1100px 580px at 85% -10%,
-        color-mix(in srgb, var(--celeste) 35%, #ffffff 65%) 0%,
+        color-mix(in srgb, var(--celeste) 38%, #ffffff 62%) 0%,
         transparent 60%
       ),
       radial-gradient(900px 480px at -10% 0%,
@@ -122,7 +122,7 @@ header .btn-primary{
   position: absolute; inset: 0;
   background:
     linear-gradient(180deg,
-      color-mix(in srgb, var(--celeste) 35%, #000 0%) 0%,
+      rgba(0,0,0,.26) 0%,
       rgba(0,0,0,.18) 55%,
       rgba(0,0,0,.12) 100%);
   pointer-events: none;
@@ -134,13 +134,9 @@ header .btn-primary{
   color: #fff !important;
 }
 
-/* Panel legible del hero (para que el blanco se lea en desktop) */
+/* Panel legible del hero */
 .hero-text-panel{
-  background: linear-gradient(
-    180deg,
-    rgba(8, 21, 36, .52) 0%,
-    rgba(8, 21, 36, .46) 100%
-  );
+  background: linear-gradient(180deg, rgba(8,21,36,.58) 0%, rgba(8,21,36,.5) 100%);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,.18);
   border-radius: var(--radius);
@@ -151,8 +147,6 @@ header .btn-primary{
 /* =========================================================
    SECCIONES DESTACADAS
    ========================================================= */
-
-/* Prioriza tu dinero — íconos tipo “logo” */
 .feature-icon{
   display:inline-flex;align-items:center;justify-content:center;
   width:64px;height:64px;border-radius:9999px;
@@ -160,8 +154,6 @@ header .btn-primary{
   border:1px solid color-mix(in srgb, var(--celeste) 22%, #e5e9ef 78%);
   color: var(--ink);
 }
-
-/* ¿Por qué estudiar? — checks con más color */
 .check-badge{
   display:inline-flex;align-items:center;justify-content:center;
   width:28px;height:28px;border-radius:9999px;
@@ -170,8 +162,6 @@ header .btn-primary{
   color:#0F172A;
   box-shadow: 0 4px 10px -6px rgba(15,23,42,.25);
 }
-
-/* Servicios — “logos” redondos (si usas esta clase en Cards) */
 .service-icon{
   display:inline-flex;align-items:center;justify-content:center;
   width:56px;height:56px;border-radius:9999px;
@@ -197,18 +187,16 @@ header .btn-primary{
    FOOTER (AZUL OSCURO)
    ========================================================= */
 footer{
-  background: #0B2545 !important;  /* azul oscuro visible */
+  background: #0B2545 !important;
   color: #E8EEF6 !important;
 }
 footer a{ color: #D7E3F5; }
 footer a:hover{ color: #ffffff; text-decoration: underline; }
 
-/* =========================================================
-   OVERRIDES DE LEGIBILIDAD
-   ========================================================= */
+/* Legibilidad */
 .text-gray-300 { color:#64748b !important; }
 .text-gray-200 { color:#475569 !important; }
 
-/* Badges con colores del logo (si las usas) */
+/* Badges */
 .badge-lime{ background: color-mix(in srgb, var(--lime) 18%, #fff 82%); color: var(--ink); }
 .badge-pink{ background: color-mix(in srgb, var(--pink) 22%, #fff 78%); color: var(--ink); }
