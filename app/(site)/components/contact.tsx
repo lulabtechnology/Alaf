@@ -1,90 +1,61 @@
-'use client';
-import { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+"use client";
+import { useState } from "react";
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const [ok, setOk] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-  }
-
-  function messagePreview(form: HTMLFormElement) {
-    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
-    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
-    const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value || '';
-    const msg = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
-    return `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\n\nMensaje:\n${msg}`;
-  }
-
-  function openWhatsApp(form: HTMLFormElement) {
-    const body = messagePreview(form);
-    // Botón SOLO para Atención:
-    const wa = `https://wa.me/50763993131?text=${encodeURIComponent(body)}`;
-    window.location.href = wa;
-  }
-
-  function openMailto(form: HTMLFormElement) {
-    const body = messagePreview(form);
-    window.location.href = `mailto:TODO-correo@alaf.edu?subject=Contacto%20ALAF&body=${encodeURIComponent(body)}`;
-  }
+  const wpAttention = "50763993131"; // Atención
+  const wpUrl = `https://wa.me/${wpAttention}?text=Hola%20ALAF%2C%20quisiera%20hablar%20con%20un%20asesor%20acad%C3%A9mico.`;
 
   return (
     <section id="contacto" className="section">
-      <div className="container-max grid md:grid-cols-2 gap-8 items-start">
+      <div className="container-max grid md:grid-cols-2 gap-8">
         <div>
-          <h2 className="h2 mb-4">Contacto</h2>
-          <p className="text-slate-700 mb-4">
-            Escríbenos y te responderemos pronto. También puedes contactarnos por{' '}
-            <a className="underline text-[var(--brand)]" href="https://www.instagram.com/alafinternationalacademy/" target="_blank" rel="noreferrer">Instagram</a>.
+          <h2 className="h2 mb-3">¡Hablemos!</h2>
+          <p className="text-slate-700">
+            Queremos conocerte y acompañarte en este nuevo comienzo. Completa el formulario
+            o escríbenos por WhatsApp; estaremos encantados de responderte.
           </p>
 
-          <div className="card p-4 space-y-2">
-            <p className="text-slate-800"><strong>Atención:</strong> <a className="underline" href="https://wa.me/50763993131" target="_blank" rel="noreferrer">+507 6399-3131</a></p>
-            <p className="text-slate-800"><strong>Admisión:</strong> <a className="underline" href="https://wa.me/50767104100" target="_blank" rel="noreferrer">+507 6710-4100</a></p>
-            <p className="text-slate-800"><strong>Administración:</strong> <a className="underline" href="https://wa.me/50766138592" target="_blank" rel="noreferrer">+507 6613-8592</a></p>
-            <p className="text-slate-700">Email: <span className="font-mono">TODO: contacto@alaf.edu</span></p>
+          <div className="mt-4 text-slate-800 space-y-1">
+            <div>📞 <b>Atención:</b> +507 6399-3131</div>
+            <div>📞 <b>Admisión:</b> +507 6710-4100</div>
+            <div>📞 <b>Administración:</b> +507 6613-8592</div>
+            <div>📧 <b>Correo:</b> <a className="underline" href="mailto:admisiones@alaf.edu">admisiones@alaf.edu</a></div>
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="card p-6 space-y-4">
-          <div>
-            <Label htmlFor="name">Nombre</Label>
-            <Input id="name" name="name" placeholder="Tu nombre" required />
-          </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" name="email" placeholder="tu@email.com" required />
-          </div>
-          <div>
-            <Label htmlFor="phone">Teléfono</Label>
-            <Input id="phone" name="phone" placeholder="(+507) 6399-3131" defaultValue="+507 6399-3131" />
-          </div>
-          <div>
-            <Label htmlFor="msg">Mensaje</Label>
-            <Textarea id="msg" name="message" rows={4} placeholder="Cuéntanos tu objetivo" />
-          </div>
+        <form
+          onSubmit={(e) => { e.preventDefault(); setOk(true); setTimeout(() => setOk(false), 4000); }}
+          className="card p-4"
+        >
+          <div className="grid gap-3">
+            <label className="text-sm">Nombre
+              <input placeholder="Tu nombre" required />
+            </label>
+            <label className="text-sm">Email
+              <input type="email" placeholder="tu@email.com" required />
+            </label>
+            <label className="text-sm">Teléfono
+              <input placeholder="+507 ..." />
+            </label>
+            <label className="text-sm">Mensaje
+              <textarea rows={5} placeholder="Cuéntanos tu objetivo" />
+            </label>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button type="submit" className="btn-primary">Enviar (demo)</Button>
-            <Button type="button" variant="secondary" onClick={(e) => openWhatsApp(e.currentTarget.form!)}>
-              Enviar por WhatsApp
-            </Button>
-            <Button type="button" variant="ghost" onClick={(e) => openMailto(e.currentTarget.form!)}>
-              Enviar por Email
-            </Button>
-          </div>
-
-          {sent && (
-            <div role="status" className="rounded-xl bg-green-600/10 border border-green-500/30 p-3 text-sm text-green-800">
-              ✅ Mensaje enviado (demo). Gracias por contactarnos.
+            <div className="flex gap-3 pt-2">
+              <button className="btn btn-primary" type="submit">✨ Enviar mensaje</button>
+              <a href={wpUrl} target="_blank" rel="noreferrer" className="btn btn-secondary">
+                💬 Chatear ahora por WhatsApp
+              </a>
             </div>
-          )}
+
+            {ok && (
+              <div className="text-green-700 bg-green-50 border border-green-200 rounded-xl px-3 py-2">
+                ¡Mensaje enviado (demo)!
+              </div>
+            )}
+          </div>
         </form>
       </div>
     </section>
