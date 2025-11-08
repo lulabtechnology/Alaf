@@ -12,7 +12,6 @@ const slides: string[][] = [
   ["/alaf/galeria/slide-6-1.jpg", "/alaf/galeria/slide-6-2.jpg", "/alaf/galeria/slide-6-3.jpg"],
 ];
 
-// aplanado para escritorio (grilla)
 const allImages = slides.flat();
 
 export default function Gallery() {
@@ -27,10 +26,9 @@ export default function Gallery() {
     <section id="galeria" className="section container-max">
       <h2 className="h2 mb-6">Galería</h2>
 
-      {/* ==== MÓVIL: carrusel 3 imágenes por slide ==== */}
+      {/* MÓVIL: carrusel 3 imágenes por slide */}
       <div className="md:hidden">
         <div className="relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm p-3">
-          {/* alto fijo para que las 3 imágenes quepan; cada item usa object-fill */}
           <div className="relative h-[52vw] min-h-[210px]">
             {slides.map((triple, idx) => (
               <div
@@ -46,7 +44,7 @@ export default function Gallery() {
                         alt="Galería ALAF"
                         fill
                         quality={90}
-                        /* 🚩 AJUSTE FORZADO: SIEMPRE llena el espacio, aunque se pixele */
+                        /* AJUSTE FORZADO: llena el cuadro aunque se pixele */
                         className="object-fill"
                         sizes="(max-width: 768px) 33vw, 33vw"
                         unoptimized
@@ -58,7 +56,7 @@ export default function Gallery() {
             ))}
           </div>
 
-        {/* dots */}
+          {/* Dots */}
           <div className="mt-3 flex justify-center gap-2">
             {slides.map((_, idx) => (
               <button
@@ -73,7 +71,7 @@ export default function Gallery() {
         </div>
       </div>
 
-      {/* ==== ESCRITORIO: grilla 3×N (sin recortar cabezas excesivamente) ==== */}
+      {/* ESCRITORIO: grilla 3×N (caras arriba) */}
       <div className="hidden md:grid grid-cols-3 gap-4">
         {allImages.map((src) => (
           <div key={src} className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm">
@@ -82,7 +80,6 @@ export default function Gallery() {
               alt="Galería ALAF"
               fill
               quality={90}
-              /* Para desktop priorizamos la parte superior (caras) */
               className="object-cover object-top"
               sizes="(min-width:1280px) 420px, 33vw"
               unoptimized
