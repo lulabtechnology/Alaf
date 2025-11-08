@@ -2,19 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =================== VARIABLES (sin theme()) =================== */
+/* =========================================================
+   VARIABLES (HEX directos, sin theme() para evitar fallos)
+   ========================================================= */
 @layer base {
   :root{
-    --bg:      #FAFCFE;   /* base muy clara */
+    /* UI neutros */
+    --bg:      #FAFCFE;
     --surface: #FFFFFF;
     --border:  #E7EDF3;
     --text:    #0F172A;
     --muted:   #475569;
 
-    --ink:     #2B2F33;   /* gris carbón del logo */
-    --celeste: #AEE3EB;   /* celestito del logo */
-    --lime:    #B7D96B;
-    --pink:    #E8C7DC;
+    /* Paleta logo ALAF */
+    --ink:     #2B2F33;   /* gris carbón / títulos generales */
+    --celeste: #AEE3EB;   /* acento celeste */
+    --lime:    #B7D96B;   /* acento lima */
+    --pink:    #E8C7DC;   /* acento rosado */
     --outline: #5C5C5C;
 
     --radius: 1rem;
@@ -22,35 +26,41 @@
 
   html, body { height: 100%; scroll-behavior: smooth; }
 
-  /* ===== Capa de fondo CELESTE fija (está en layout) ===== */
+  /* =========================
+     CAPA DE FONDO CELESTE FIJA
+     (Se inyecta el <div class="page-bg" /> en app/layout.tsx)
+     ========================= */
   .page-bg{
     position: fixed;
     inset: 0;
     z-index: -1;
     background:
       radial-gradient(1200px 620px at 86% -12%,
-        color-mix(in srgb, var(--celeste) 40%, #ffffff 60%) 0%,
-        transparent 60%
+        rgba(174,227,235,0.85) 0%,
+        rgba(174,227,235,0.00) 60%
       ),
       radial-gradient(900px 520px at -10% 5%,
         #E9F6FB 0%,
-        transparent 58%
+        rgba(233,246,251,0) 58%
       ),
       var(--bg);
   }
 
+  /* El body queda transparente para que se vea la page-bg */
   body{
     color: var(--text);
-    /* por si algún reset te metía fondo, forzamos transparente */
     background: transparent !important;
   }
 
-  .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; color: var(--ink) !important; }
-  .h2 { @apply text-3xl md:text-4xl font-semibold; color: var(--ink) !important; }
+  /* Títulos base (sin forzar color para no pisar el Hero) */
+  .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; }
+  .h2 { @apply text-3xl md:text-4xl font-semibold; }
   .muted { color: var(--muted) !important; }
 }
 
-/* =================== LAYOUT & CARDS =================== */
+/* =========================================================
+   LAYOUT & CARDS
+   ========================================================= */
 .container-max { @apply max-w-7xl mx-auto px-4; }
 .section      { @apply py-16 md:py-24; }
 
@@ -61,7 +71,9 @@
   box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
 }
 
-/* =================== NAVBAR (rosado) =================== */
+/* =========================================================
+   NAVBAR (rosado)
+   ========================================================= */
 header{
   background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
   backdrop-filter: blur(10px);
@@ -72,18 +84,28 @@ header a{ color: var(--ink); }
 header a:hover{ color: var(--ink); text-decoration: underline; }
 header .btn-primary{ background: var(--ink) !important; color: #fff !important; }
 
-/* =================== BOTONES =================== */
-.btn{ @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none; }
-.btn-primary{ background: var(--ink) !important; color: #fff !important; }
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn{
+  @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
+}
+.btn-primary{
+  background: var(--ink) !important;
+  color: #fff !important;
+}
 .btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
 .btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
+
 .btn-secondary{
   background: color-mix(in srgb, var(--celeste) 18%, #ffffff 82%) !important;
   color: var(--ink) !important;
   border: 1px solid color-mix(in srgb, var(--celeste) 24%, #e7edf3 76%) !important;
 }
 
-/* =================== FORM =================== */
+/* =========================================================
+   FORM
+   ========================================================= */
 input, textarea{
   @apply rounded-xl w-full px-4 py-3 outline-none transition;
   background: #FAFBFC;
@@ -96,7 +118,9 @@ input:focus, textarea:focus{
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--celeste) 28%, #ffffff 72%);
 }
 
-/* =================== HERO =================== */
+/* =========================================================
+   HERO (texto SIEMPRE blanco y legible)
+   ========================================================= */
 #inicio{ position: relative; }
 #inicio::after{
   content: "";
@@ -104,6 +128,14 @@ input:focus, textarea:focus{
   background: linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.12) 100%);
   pointer-events: none;
 }
+
+/* H1 del hero en blanco brillante */
+.hero-title{
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+
+/* Panel de texto del hero */
 .hero-text-panel{
   background: linear-gradient(180deg, rgba(8,21,36,.58) 0%, rgba(8,21,36,.5) 100%);
   backdrop-filter: blur(6px);
@@ -113,7 +145,9 @@ input:focus, textarea:focus{
   box-shadow: 0 24px 60px -28px rgba(2,8,23,.45);
 }
 
-/* =================== “Prioriza tu dinero” y checks =================== */
+/* =========================================================
+   “Prioriza tu dinero” y checks
+   ========================================================= */
 .feature-icon{
   display:inline-flex;align-items:center;justify-content:center;
   width:64px;height:64px;border-radius:9999px;
@@ -130,19 +164,35 @@ input:focus, textarea:focus{
   box-shadow: 0 4px 10px -6px rgba(15,23,42,.25);
 }
 
-/* =================== DOTS (hero/testimonios) =================== */
-.dot{ height:.6rem;width:1.8rem;border-radius:9999px;border:1px solid #cbd5e1;background:#e2e8f0; }
-.dot[aria-current="true"]{ background: var(--celeste) !important; border-color: var(--celeste) !important; }
+/* =========================================================
+   DOTS (hero/testimonios)
+   ========================================================= */
+.dot{
+  height:.6rem;width:1.8rem;border-radius:9999px;
+  border:1px solid #cbd5e1;background:#e2e8f0;
+}
+.dot[aria-current="true"]{
+  background: var(--celeste) !important;
+  border-color: var(--celeste) !important;
+}
 
-/* =================== FAQ =================== */
+/* =========================================================
+   FAQ
+   ========================================================= */
 .faq-item { border:1px solid var(--border); border-radius: var(--radius); }
 .faq-head { @apply w-full text-left p-4 flex items-center justify-between; }
 .faq-open { background: color-mix(in srgb, var(--celeste) 12%, #ffffff 88%) !important; }
 .faq-body { @apply px-4 pb-4 text-slate-800; }
 
-/* =================== FOOTER =================== */
-footer{ background: #0B2545 !important; color: #E8EEF6 !important; }
-footer a{ color: #D7E3F5; } footer a:hover{ color: #ffffff; text-decoration: underline; }
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer{
+  background: #0B2545 !important;
+  color: #E8EEF6 !important;
+}
+footer a{ color: #D7E3F5; }
+footer a:hover{ color: #ffffff; text-decoration: underline; }
 
 /* Legibilidad genérica */
 .text-gray-300 { color:#64748b !important; }
