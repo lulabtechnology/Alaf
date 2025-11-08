@@ -1,62 +1,104 @@
 "use client";
 import { useState } from "react";
+import { Instagram, Mail, MapPin, Phone, Send, WhatsappIcon as WhatsApp } from "lucide-react";
+import Image from "next/image";
 
 export function Contact() {
-  const [ok, setOk] = useState(false);
-
-  const wpAttention = "50763993131"; // Atención
-  const wpUrl = `https://wa.me/${wpAttention}?text=Hola%20ALAF%2C%20quisiera%20hablar%20con%20un%20asesor%20acad%C3%A9mico.`;
+  const [sent, setSent] = useState(false);
 
   return (
     <section id="contacto" className="section">
-      <div className="container-max grid md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="h2 mb-3">¡Hablemos!</h2>
-          <p className="text-slate-700">
-            Queremos conocerte y acompañarte en este nuevo comienzo. Completa el formulario
-            o escríbenos por WhatsApp; estaremos encantados de responderte.
-          </p>
+      <div className="container-max">
+        <h2 className="h2 mb-2">Hablemos</h2>
+        <p className="muted mb-6">
+          Queremos conocerte y acompañarte en este nuevo comienzo. Completa el formulario o escríbenos por WhatsApp; estaremos encantados de responderte.
+        </p>
 
-          <div className="mt-4 text-slate-800 space-y-1">
-            <div>📞 <b>Atención:</b> +507 6399-3131</div>
-            <div>📞 <b>Admisión:</b> +507 6710-4100</div>
-            <div>📞 <b>Administración:</b> +507 6613-8592</div>
-            <div>📧 <b>Correo:</b> <a className="underline" href="mailto:admisiones@alaf.edu">admisiones@alaf.edu</a></div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {/* Datos */}
+          <div className="card p-6 flex flex-col gap-3">
+            <div className="flex items-center gap-2 text-slate-700">
+              <Phone className="h-5 w-5" /> <span><b>Atención</b>: +507 6399-3131</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-700">
+              <Phone className="h-5 w-5" /> <span><b>Admisión</b>: +507 6710-4100</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-700">
+              <Phone className="h-5 w-5" /> <span><b>Administración</b>: +507 6613-8592</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-700">
+              <Mail className="h-5 w-5" /> <span>admisiones@alaf.edu</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-700">
+              <Mail className="h-5 w-5" /> <span>info@alafinternationalacademy.com</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-700">
+              <Instagram className="h-5 w-5" /> <span>@alafinternationalacademy</span>
+            </div>
+            <div className="flex items-start gap-2 text-slate-700">
+              <MapPin className="h-5 w-5 mt-0.5" />
+              <span><b>Ubicación:</b> Panamá, Punta Pacífica, Grand Plaza</span>
+            </div>
+
+            <a
+              href="https://wa.me/50763993131"
+              className="btn btn-primary mt-2 inline-flex items-center gap-2"
+            >
+              <WhatsApp className="h-5 w-5" /> Chatear ahora por WhatsApp
+            </a>
+          </div>
+
+          {/* Formulario */}
+          <div className="md:col-span-2 card p-6">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSent(true);
+                setTimeout(() => setSent(false), 3000);
+              }}
+              className="grid md:grid-cols-2 gap-4"
+            >
+              <div>
+                <label className="block text-sm font-medium mb-1">Nombre</label>
+                <input placeholder="Tu nombre" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Email</label>
+                <input type="email" placeholder="correo@ejemplo.com" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Teléfono</label>
+                <input placeholder="+507 ..." required />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium mb-1">Mensaje</label>
+                <textarea rows={4} placeholder="Cuéntanos sobre tu caso" />
+              </div>
+              <div className="md:col-span-2">
+                <button className="btn btn-primary inline-flex items-center gap-2">
+                  <Send className="h-5 w-5" /> ✨ Enviar mensaje
+                </button>
+                {sent && (
+                  <span className="ml-3 text-green-700">Mensaje enviado ✅</span>
+                )}
+              </div>
+            </form>
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); setOk(true); setTimeout(() => setOk(false), 4000); }}
-          className="card p-4"
-        >
-          <div className="grid gap-3">
-            <label className="text-sm">Nombre
-              <input placeholder="Tu nombre" required />
-            </label>
-            <label className="text-sm">Email
-              <input type="email" placeholder="tu@email.com" required />
-            </label>
-            <label className="text-sm">Teléfono
-              <input placeholder="+507 ..." />
-            </label>
-            <label className="text-sm">Mensaje
-              <textarea rows={5} placeholder="Cuéntanos tu objetivo" />
-            </label>
-
-            <div className="flex gap-3 pt-2">
-              <button className="btn btn-primary" type="submit">✨ Enviar mensaje</button>
-              <a href={wpUrl} target="_blank" rel="noreferrer" className="btn btn-secondary">
-                💬 Chatear ahora por WhatsApp
-              </a>
-            </div>
-
-            {ok && (
-              <div className="text-green-700 bg-green-50 border border-green-200 rounded-xl px-3 py-2">
-                ¡Mensaje enviado (demo)!
-              </div>
-            )}
+        {/* Imagen adicional bajo “Hablemos!” */}
+        <div className="mt-8">
+          <div className="relative h-[240px] md:h-[340px] rounded-2xl overflow-hidden card">
+            <Image
+              src="/alaf/contacto/extra.jpg"   // SUBIR esta imagen
+              alt="ALAF – comunidad y espacios de aprendizaje"
+              fill
+              className="object-cover"
+              quality={90}
+              unoptimized
+            />
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );
