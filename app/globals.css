@@ -106,6 +106,8 @@ header{
 }
 header a{ color: var(--ink); }
 header a:hover{ color: var(--ink); text-decoration: underline; }
+/* evita underline en botones dentro del header */
+header a.btn:hover{ text-decoration: none; }
 header .btn-primary{ background: var(--ink) !important; color: #fff !important; }
 
 /* =========================================================
@@ -144,14 +146,8 @@ input:focus, textarea:focus{
 
 /* =========================================================
    HERO (texto SIEMPRE blanco y legible)
+   - quitamos el overlay global #inicio::after porque ya existe overlay local en hero.tsx
    ========================================================= */
-#inicio{ position: relative; }
-#inicio::after{
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.26) 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.12) 100%);
-  pointer-events: none;
-}
 
 /* H1 del hero en blanco brillante */
 .hero-title{
