@@ -57,6 +57,55 @@
   }
 
   /* =========================
+     REVEAL (scroll) — sutil y premium
+     - Solo se activa cuando JS añade la clase `js` al <html>
+     - Sin JS: todo se ve normal
+     ========================= */
+  .js [data-reveal]{
+    opacity: 0;
+    filter: blur(2px);
+    transition:
+      opacity 600ms cubic-bezier(.2,.8,.2,1),
+      filter 600ms cubic-bezier(.2,.8,.2,1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, filter;
+  }
+  @supports (translate: 0 0) {
+    .js [data-reveal]{
+      translate: 0 12px;
+      transition:
+        opacity 600ms cubic-bezier(.2,.8,.2,1),
+        translate 600ms cubic-bezier(.2,.8,.2,1),
+        filter 600ms cubic-bezier(.2,.8,.2,1);
+    }
+    .js [data-reveal].is-revealed{ translate: 0 0; }
+  }
+  @supports not (translate: 0 0) {
+    .js [data-reveal]{
+      transform: translateY(12px);
+      transition:
+        opacity 600ms cubic-bezier(.2,.8,.2,1),
+        transform 600ms cubic-bezier(.2,.8,.2,1),
+        filter 600ms cubic-bezier(.2,.8,.2,1);
+    }
+    .js [data-reveal].is-revealed{ transform: translateY(0); }
+  }
+  .js [data-reveal].is-revealed{
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .js [data-reveal],
+    .js [data-reveal].is-revealed{
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      translate: none !important;
+    }
+  }
+
+  /* =========================
      CAPA DE FONDO CELESTE FIJA
      (Se inyecta el <div class="page-bg" /> en app/layout.tsx)
      ========================= */
@@ -146,7 +195,6 @@ input:focus, textarea:focus{
 
 /* =========================================================
    HERO (texto SIEMPRE blanco y legible)
-   - quitamos el overlay global #inicio::after porque ya existe overlay local en hero.tsx
    ========================================================= */
 
 /* H1 del hero en blanco brillante */
