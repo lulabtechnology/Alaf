@@ -1,3 +1,4 @@
+// RUTA: /app/(site)/components/testimonials.tsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -77,7 +78,11 @@ export function Testimonials() {
   return (
     <section id="testimonios" className="section">
       <div className="container-max">
-        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+        <div
+          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          data-reveal
+          data-reveal-delay="0"
+        >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className="h2">Testimonios</h2>
 
@@ -102,7 +107,11 @@ export function Testimonials() {
           </div>
 
           <div className="mt-6">
-            <article className="card min-h-[240px] p-6 md:p-8">
+            <article
+              className="card min-h-[240px] p-6 md:p-8"
+              data-reveal
+              data-reveal-delay="120"
+            >
               <div className="mb-2">
                 <div className="font-semibold text-slate-900">{active.name}</div>
                 <div className="text-sm text-slate-600">{active.subtitle}</div>
