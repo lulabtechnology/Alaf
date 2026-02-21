@@ -1,4 +1,5 @@
 // RUTA: /app/(site)/components/hero.tsx
+// RUTA: /app/(site)/components/hero.tsx
 import Image from "next/image";
 
 export default function Hero() {
@@ -35,7 +36,11 @@ export default function Hero() {
           {/* Texto */}
           <div className="pointer-events-none absolute inset-0 flex items-center">
             <div className="pointer-events-auto mx-4 w-full md:mx-10 lg:mx-16">
-              <div className="hero-text-panel max-w-2xl">
+              <div
+                className="hero-text-panel max-w-2xl"
+                data-reveal
+                data-reveal-delay="0"
+              >
                 <h1 className="hero-title text-3xl font-semibold leading-tight md:text-5xl">
                   Aprender desde casa nunca fue tan emocionante.
                 </h1>
