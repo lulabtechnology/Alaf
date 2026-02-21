@@ -1,3 +1,4 @@
+// RUTA: /app/(site)/components/about.tsx
 import Image from "next/image";
 
 export function About() {
@@ -5,7 +6,7 @@ export function About() {
     <section id="about" className="section">
       <div className="container-max">
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12">
-          <div className="max-w-prose">
+          <div className="max-w-prose" data-reveal data-reveal-delay="0">
             <h2 className="h2 mb-4">Acerca de ALAF</h2>
             <h3 className="mb-2 text-lg font-semibold">💡 Aprender para la vida real</h3>
             <p className="leading-relaxed text-slate-700">
@@ -17,7 +18,11 @@ export function About() {
           </div>
 
           {/* Imagen lateral */}
-          <div className="relative overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
+          <div
+            className="relative overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5"
+            data-reveal
+            data-reveal-delay="120"
+          >
             <div className="relative h-[260px] md:h-[360px]">
               <Image
                 src="/alaf/about/side.jpg"
@@ -32,7 +37,7 @@ export function About() {
         </div>
 
         {/* Imagen de cierre grande justo ANTES de “Por qué elegir ALAF” */}
-        <div className="mt-10">
+        <div className="mt-10" data-reveal data-reveal-delay="220">
           <div className="relative overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
             <div className="relative h-[300px] md:h-[420px]">
               <Image
