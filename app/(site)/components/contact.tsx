@@ -1,3 +1,4 @@
+// RUTA: /app/(site)/components/contact.tsx
 // app/(site)/components/contact.tsx
 "use client";
 
@@ -17,12 +18,16 @@ export function Contact() {
   return (
     <section id="contacto" className="section">
       <div className="container-max">
-        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+        <div
+          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          data-reveal
+          data-reveal-delay="0"
+        >
           <h2 className="h2 mb-6">Hablemos</h2>
 
           <div className="grid gap-6 md:grid-cols-3">
             {/* Columna izquierda: datos y redes */}
-            <div className="card p-6">
+            <div className="card p-6" data-reveal data-reveal-delay="100">
               <ul className="space-y-2 text-slate-700">
                 <li>
                   <strong>Atención:</strong>{" "}
@@ -59,7 +64,10 @@ export function Contact() {
                 </li>
                 <li>
                   <strong>Correo:</strong>{" "}
-                  <a href="mailto:info@alafinternationalacademy.com" className="underline">
+                  <a
+                    href="mailto:info@alafinternationalacademy.com"
+                    className="underline"
+                  >
                     info@alafinternationalacademy.com
                   </a>
                 </li>
@@ -121,6 +129,8 @@ export function Contact() {
             {/* Columna derecha: formulario (demo) */}
             <form
               className="card p-6 md:col-span-2"
+              data-reveal
+              data-reveal-delay="160"
               onSubmit={(e) => {
                 e.preventDefault();
                 setSent(true);
@@ -175,7 +185,11 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5">
+        <div
+          className="mt-6 overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5"
+          data-reveal
+          data-reveal-delay="220"
+        >
           <div className="relative aspect-[16/7] w-full">
             <Image
               src="/alaf/contacto/extra.jpg"
