@@ -2,8 +2,10 @@ export function Footer() {
   return (
     <footer className="mt-10">
       <div className="container-max py-10">
-        <div className="text-slate-200 space-y-1">
-          <div><b>ALAF International Academy</b> — Educar con propósito desde cualquier lugar del mundo.</div>
+        <div className="space-y-1 text-slate-200">
+          <div>
+            <b>ALAF International Academy</b> — Educar con propósito desde cualquier lugar del mundo.
+          </div>
           <div>📅 Programas Homeschool y Virtual School</div>
           <div>© 2025 ALAF International Academy. Todos los derechos reservados.</div>
         </div>
