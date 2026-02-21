@@ -1,3 +1,4 @@
+// RUTA: /app/(site)/components/faq.tsx
 import { Plus } from "lucide-react";
 
 export function FAQ() {
@@ -27,13 +28,19 @@ export function FAQ() {
   return (
     <section id="faq" className="section">
       <div className="container-max">
-        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+        <div
+          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          data-reveal
+          data-reveal-delay="0"
+        >
           <h2 className="h2 mb-6">Preguntas frecuentes</h2>
 
           <div className="space-y-3">
             {items.map((it, idx) => (
               <details
                 key={idx}
+                data-reveal
+                data-reveal-delay={String(80 + idx * 50)}
                 className="faq-item group bg-white/90 transition-colors open:bg-white"
               >
                 <summary className="faq-head">
