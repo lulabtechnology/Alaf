@@ -1,12 +1,21 @@
+// RUTA: /app/(site)/components/services.tsx
 export function Services() {
   return (
     <section id="servicios" className="section">
       <div className="container-max">
-        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+        <div
+          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          data-reveal
+          data-reveal-delay="0"
+        >
           <h2 className="h2 mb-6">🎓 Modalidades Educativas ALAF International Academy</h2>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="card p-6 transition-transform duration-200 hover:-translate-y-1">
+            <div
+              className="card p-6 transition-transform duration-200 hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay="120"
+            >
               <h3 className="mb-2 text-xl font-semibold">🖥️ Virtual School</h3>
               <p className="leading-relaxed text-slate-700">
                 Nuestra modalidad Virtual School ofrece una experiencia escolar en vivo, donde los estudiantes se conectan en tiempo real con sus docentes y compañeros de lunes a jueves.
@@ -16,7 +25,11 @@ export function Services() {
               </p>
             </div>
 
-            <div className="card p-6 transition-transform duration-200 hover:-translate-y-1">
+            <div
+              className="card p-6 transition-transform duration-200 hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay="200"
+            >
               <h3 className="mb-2 text-xl font-semibold">🏡 Homeschool Acompañado</h3>
               <p className="leading-relaxed text-slate-700">
                 En nuestra modalidad Homeschool, las familias disfrutan de la libertad de aprender a su propio ritmo, con la guía, supervisión y recursos educativos de ALAF.
