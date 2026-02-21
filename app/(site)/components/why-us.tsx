@@ -1,3 +1,4 @@
+// RUTA: /app/(site)/components/why-us.tsx
 import { Check } from "lucide-react";
 
 const items = [
@@ -15,7 +16,7 @@ export function WhyUs() {
       <div className="container-max">
         <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
           <div className="grid gap-10 md:grid-cols-2 md:items-start">
-            <div className="max-w-prose">
+            <div className="max-w-prose" data-reveal data-reveal-delay="0">
               <h2 className="h2 mb-4">💡 Por qué elegir ALAF</h2>
               <p className="mb-6 text-slate-700">
                 En ALAF creemos que cada estudiante tiene su propio ritmo, sus talentos y su historia.
@@ -28,6 +29,8 @@ export function WhyUs() {
                 <div
                   key={i}
                   className="card flex items-start gap-3 p-4 transition-transform duration-200 hover:-translate-y-0.5"
+                  data-reveal
+                  data-reveal-delay={String(80 + i * 60)}
                 >
                   <span className="check-badge mt-1">
                     <Check className="h-4 w-4" />
