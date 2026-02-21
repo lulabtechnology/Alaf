@@ -1,14 +1,23 @@
+// RUTA: /app/(site)/components/benefits.tsx
 import { Target, Clock, LineChart } from "lucide-react";
 
 export function Benefits() {
   return (
     <section id="benefits" className="section">
       <div className="container-max">
-        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+        <div
+          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          data-reveal
+          data-reveal-delay="0"
+        >
           <h2 className="h2 mb-6">🌟 Prioriza tu aprendizaje</h2>
 
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="card p-6 transition-transform duration-200 hover:-translate-y-1">
+            <div
+              className="card p-6 transition-transform duration-200 hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay="80"
+            >
               <div className="feature-icon mb-4">
                 <Target className="h-6 w-6" />
               </div>
@@ -18,7 +27,11 @@ export function Benefits() {
               </p>
             </div>
 
-            <div className="card p-6 transition-transform duration-200 hover:-translate-y-1">
+            <div
+              className="card p-6 transition-transform duration-200 hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay="160"
+            >
               <div className="feature-icon mb-4">
                 <Clock className="h-6 w-6" />
               </div>
@@ -28,7 +41,11 @@ export function Benefits() {
               </p>
             </div>
 
-            <div className="card p-6 transition-transform duration-200 hover:-translate-y-1">
+            <div
+              className="card p-6 transition-transform duration-200 hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay="240"
+            >
               <div className="feature-icon mb-4">
                 <LineChart className="h-6 w-6" />
               </div>
