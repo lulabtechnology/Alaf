@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Star } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 type Testimonial = {
   name: string;
@@ -47,7 +47,7 @@ function Stars({ value }: { value: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className="w-4 h-4"
+          className="h-4 w-4"
           style={{
             color: i < value ? "var(--celeste)" : "#e2e8f0",
             fill: i < value ? "var(--celeste)" : "transparent",
@@ -62,52 +62,68 @@ function Stars({ value }: { value: number }) {
 export function Testimonials() {
   const [idx, setIdx] = useState(0);
 
+  const total = DATA.length;
+  const prev = () => setIdx((p) => (p - 1 + total) % total);
+  const next = () => setIdx((p) => (p + 1) % total);
+
+  const active = useMemo(() => DATA[idx], [idx]);
+
   // auto-avance cada 5s
   useEffect(() => {
-    const id = setInterval(() => setIdx((p) => (p + 1) % DATA.length), 5000);
-    return () => clearInterval(id);
-  }, []);
+    const id = window.setInterval(() => setIdx((p) => (p + 1) % total), 5000);
+    return () => window.clearInterval(id);
+  }, [total]);
 
   return (
     <section id="testimonios" className="section">
       <div className="container-max">
-        <h2 className="h2 mb-6">Testimonios</h2>
+        <div className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <h2 className="h2">Testimonios</h2>
 
-        <div className="relative">
-          {/* Slides */}
-          <div className="overflow-hidden">
-            {DATA.map((t, i) => (
-              <article
-                key={t.name + i}
-                className={`card p-6 md:p-8 transition-opacity duration-500 ${
-                  idx === i ? "opacity-100" : "opacity-0 pointer-events-none absolute inset-0"
-                }`}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={prev}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-900/10 bg-white/70 shadow-sm backdrop-blur transition hover:bg-white"
+                aria-label="Testimonio anterior"
               >
-                <div className="mb-2">
-                  <div className="font-semibold text-slate-900">{t.name}</div>
-                  <div className="text-slate-600 text-sm">{t.subtitle}</div>
-                </div>
-
-                <Stars value={t.rating} />
-
-                <p className="text-slate-800 leading-relaxed mt-3">
-                  {t.quote}
-                </p>
-              </article>
-            ))}
+                <ChevronLeft className="h-5 w-5 text-slate-800" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-900/10 bg-white/70 shadow-sm backdrop-blur transition hover:bg-white"
+                aria-label="Siguiente testimonio"
+              >
+                <ChevronRight className="h-5 w-5 text-slate-800" />
+              </button>
+            </div>
           </div>
 
-          {/* Dots */}
-          <div className="mt-4 flex items-center justify-center gap-2">
-            {DATA.map((_, i) => (
-              <button
-                key={i}
-                className="dot"
-                aria-current={idx === i}
-                aria-label={`testimonio ${i + 1}`}
-                onClick={() => setIdx(i)}
-              />
-            ))}
+          <div className="mt-6">
+            <article className="card min-h-[240px] p-6 md:p-8">
+              <div className="mb-2">
+                <div className="font-semibold text-slate-900">{active.name}</div>
+                <div className="text-sm text-slate-600">{active.subtitle}</div>
+              </div>
+
+              <Stars value={active.rating} />
+
+              <p className="mt-3 leading-relaxed text-slate-800">{active.quote}</p>
+            </article>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {DATA.map((_, i) => (
+                <button
+                  key={i}
+                  className="dot"
+                  aria-current={idx === i}
+                  aria-label={`testimonio ${i + 1}`}
+                  onClick={() => setIdx(i)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
