@@ -7,7 +7,12 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
-const NAV_LINKS = [
+/**
+ * Lista SOLO para scroll spy (incluye todos los anchors requeridos).
+ * Esto mantiene el comportamiento de “active section” aunque el menú
+ * ya no muestre un link textual a #contacto (lo cubre el botón).
+ */
+const SPY_LINKS = [
   { href: "#inicio", label: "Inicio" },
   { href: "#about", label: "Acerca de" },
   { href: "#benefits", label: "Prioriza tu aprendizaje" },
@@ -16,6 +21,21 @@ const NAV_LINKS = [
   { href: "#testimonios", label: "Testimonios" },
   { href: "#contacto", label: "Contacto" },
 ] as const;
+
+/**
+ * Links visibles del navbar:
+ * - Quitamos “Contacto” para evitar duplicidad con el botón negro “Contáctenos”
+ * - Agregamos “Campus Virtual” (Moodle) como link externo
+ */
+const NAV_LINKS: Array<{ href: string; label: string; external?: boolean }> = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#about", label: "Acerca de" },
+  { href: "#benefits", label: "Prioriza tu aprendizaje" },
+  { href: "#por-que-nosotros", label: "¿Por qué nosotros?" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#testimonios", label: "Testimonios" },
+  { href: "https://alafinternationalacademy.com/", label: "Campus Virtual", external: true },
+];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -31,7 +51,7 @@ export function Navbar() {
 
   // Scroll spy simple (pro) con IntersectionObserver (sin librerías)
   useEffect(() => {
-    const ids = NAV_LINKS.map((l) => l.href.replace("#", ""));
+    const ids = SPY_LINKS.map((l) => l.href.replace("#", ""));
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -111,16 +131,35 @@ export function Navbar() {
         </Link>
 
         {/* Desktop */}
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-5 md:flex" aria-label="Navegación principal">
           {NAV_LINKS.map((l) => {
-            const isActive = active === l.href;
+            const isHash = l.href.startsWith("#");
+            const isActive = isHash && active === l.href;
+
+            if (l.external) {
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className={clsx(
+                    "text-[13px] lg:text-sm font-medium transition whitespace-nowrap",
+                    "text-slate-700 hover:text-slate-950 hover:underline hover:decoration-2 hover:underline-offset-8"
+                  )}
+                >
+                  {l.label}
+                </a>
+              );
+            }
+
             return (
               <a
                 key={l.href}
                 href={l.href}
                 aria-current={isActive ? "page" : undefined}
                 className={clsx(
-                  "text-sm font-medium transition",
+                  "text-[13px] lg:text-sm font-medium transition whitespace-nowrap",
                   isActive
                     ? "text-slate-950 underline decoration-2 underline-offset-8"
                     : "text-slate-700 hover:text-slate-950"
@@ -131,7 +170,13 @@ export function Navbar() {
             );
           })}
 
-          <a href="#contacto" className="btn btn-primary">
+          <a
+            href="#contacto"
+            className={clsx(
+              "btn btn-primary whitespace-nowrap",
+              active === "#contacto" ? "ring-2 ring-slate-900/15" : ""
+            )}
+          >
             Contáctenos
           </a>
         </nav>
@@ -163,7 +208,24 @@ export function Navbar() {
           >
             <div className="container-max flex flex-col gap-2 py-3">
               {NAV_LINKS.map((l) => {
-                const isActive = active === l.href;
+                const isHash = l.href.startsWith("#");
+                const isActive = isHash && active === l.href;
+
+                if (l.external) {
+                  return (
+                    <a
+                      key={l.href}
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      onClick={() => setOpen(false)}
+                      className="rounded-2xl px-3 py-3 text-sm font-medium text-slate-800 transition hover:bg-slate-900/5"
+                    >
+                      {l.label}
+                    </a>
+                  );
+                }
+
                 return (
                   <a
                     key={l.href}
@@ -185,7 +247,7 @@ export function Navbar() {
               <a
                 href="#contacto"
                 onClick={() => setOpen(false)}
-                className="btn btn-primary mt-1"
+                className={clsx("btn btn-primary mt-1", active === "#contacto" ? "ring-2 ring-slate-900/15" : "")}
               >
                 Contáctenos
               </a>
