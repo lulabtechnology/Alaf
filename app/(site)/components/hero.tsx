@@ -55,7 +55,7 @@ export default function Hero() {
                     fill
                     priority
                     sizes="(min-width: 1280px) 820px, (min-width: 1024px) 58vw, (min-width: 768px) 92vw, 100vw"
-                    className="hidden md:block object-cover object-center"
+                    className="hidden md:block object-cover object-right"
                   />
 
                   {/* Mobile image (<md) */}
@@ -65,7 +65,7 @@ export default function Hero() {
                     fill
                     priority
                     sizes="100vw"
-                    className="md:hidden object-cover object-center"
+                    className="md:hidden object-cover object-right"
                   />
 
                   {/* Overlay sutil para look premium */}
