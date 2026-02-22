@@ -1,6 +1,7 @@
 // RUTA: /app/(site)/components/testimonials.tsx
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
@@ -83,10 +84,27 @@ export function Testimonials() {
           data-reveal
           data-reveal-delay="0"
         >
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 className="h2">Testimonios</h2>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
+              {/* Muñequito/extra movido aquí (solo en desktop para microdetalle) */}
+              <div className="hidden md:block">
+                <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-white/80 shadow-sm ring-1 ring-black/5">
+                  <div className="absolute inset-2">
+                    <Image
+                      src="/alaf/contacto/extra.jpg"
+                      alt="ALAF"
+                      fill
+                      sizes="64px"
+                      className="object-contain"
+                      priority={false}
+                      quality={85}
+                    />
+                  </div>
+                </div>
+              </div>
+
               <button
                 type="button"
                 onClick={prev}
