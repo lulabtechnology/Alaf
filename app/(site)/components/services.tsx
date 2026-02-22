@@ -19,13 +19,13 @@ export function Services() {
                 data-reveal
                 data-reveal-delay="80"
               >
-                <div className="relative aspect-[4/3] w-full md:aspect-[16/11]">
+                <div className="relative aspect-[3/2] w-full">
                   <Image
                     src="/alaf/servicios/serv-1.jpg"
                     alt="Modalidades educativas en ALAF"
                     fill
                     sizes="(min-width: 1024px) 560px, (min-width: 768px) 520px, 100vw"
-                    className="object-cover [object-position:center_35%]"
+                    className="object-cover object-center"
                     quality={88}
                     priority={false}
                   />
