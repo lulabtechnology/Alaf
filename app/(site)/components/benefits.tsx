@@ -3,16 +3,21 @@ import { Target, Clock, LineChart } from "lucide-react";
 
 export function Benefits() {
   return (
-    <section id="benefits" className="section">
+    <section
+      id="benefits"
+      className="relative py-10 md:py-14"
+    >
       <div className="container-max">
         <div
-          className="rounded-3xl bg-white/70 p-6 shadow-sm ring-1 ring-black/5 md:p-10"
+          className="rounded-3xl border border-slate-900/5 bg-white/60 p-6 shadow-sm backdrop-blur md:p-10"
           data-reveal
           data-reveal-delay="0"
         >
-          <h2 className="h2 mb-6">🌟 Prioriza tu aprendizaje</h2>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <h2 className="h2">🌟 Prioriza tu aprendizaje</h2>
+          </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
             <div
               className="card p-6 transition-transform duration-200 hover:-translate-y-1"
               data-reveal
