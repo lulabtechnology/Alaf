@@ -24,13 +24,13 @@ export function WhyUs() {
                 data-reveal
                 data-reveal-delay="0"
               >
-                <div className="relative aspect-[4/3] w-full md:aspect-[16/11]">
+                <div className="relative aspect-[3/2] w-full">
                   <Image
                     src="/alaf/servicios/serv-2.jpg"
                     alt="Acompañamiento y aprendizaje en ALAF"
                     fill
                     sizes="(min-width: 1024px) 560px, (min-width: 768px) 520px, 100vw"
-                    className="object-cover [object-position:center_35%]"
+                    className="object-cover object-center"
                     quality={88}
                     priority={false}
                   />
