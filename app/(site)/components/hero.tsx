@@ -1,43 +1,16 @@
 // RUTA: /app/(site)/components/hero.tsx
-// RUTA: /app/(site)/components/hero.tsx
 import Image from "next/image";
 
 export default function Hero() {
   return (
     <section id="inicio" className="relative pt-4 md:pt-6">
       <div className="container-max">
-        <div className="relative overflow-hidden rounded-3xl shadow-lg ring-1 ring-black/5">
-          {/* Media */}
-          <div className="relative h-[62vh] min-h-[420px] w-full md:h-[74vh]">
-            {/* Desktop image (md+) */}
-            <Image
-              src="/alaf/hero/hero-desktop.jpg"
-              alt="Estudiantes felices en ALAF"
-              fill
-              priority
-              sizes="(min-width: 1280px) 1280px, (min-width: 768px) 92vw, 100vw"
-              className="hidden md:block object-cover object-center"
-            />
-
-            {/* Mobile image (<md) */}
-            <Image
-              src="/alaf/hero/hero-mobile.jpg"
-              alt="Estudiantes felices en ALAF"
-              fill
-              priority
-              sizes="100vw"
-              className="md:hidden object-cover object-center"
-            />
-
-            {/* Overlay (solo sobre la imagen, NO sobre el texto) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/38 to-slate-900/20" />
-          </div>
-
-          {/* Texto */}
-          <div className="pointer-events-none absolute inset-0 flex items-center">
-            <div className="pointer-events-auto mx-4 w-full md:mx-10 lg:mx-16">
+        <div className="relative overflow-hidden rounded-3xl bg-white/55 shadow-lg ring-1 ring-black/5">
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-0">
+            {/* Texto (izquierda) */}
+            <div className="relative z-10 flex items-center p-5 md:p-10 lg:col-span-5 lg:p-12">
               <div
-                className="hero-text-panel max-w-2xl"
+                className="hero-text-panel w-full max-w-xl"
                 data-reveal
                 data-reveal-delay="0"
               >
@@ -70,8 +43,37 @@ export default function Hero() {
                 </div>
               </div>
             </div>
+
+            {/* Media (derecha) */}
+            <div className="relative lg:col-span-7 lg:p-6">
+              <div className="relative overflow-hidden rounded-3xl ring-1 ring-black/5 shadow-sm">
+                <div className="relative aspect-[4/5] w-full md:aspect-[16/9] lg:aspect-[16/10]">
+                  {/* Desktop image (md+) */}
+                  <Image
+                    src="/alaf/hero/hero-desktop.jpg"
+                    alt="Estudiantes felices en ALAF"
+                    fill
+                    priority
+                    sizes="(min-width: 1280px) 820px, (min-width: 1024px) 58vw, (min-width: 768px) 92vw, 100vw"
+                    className="hidden md:block object-cover object-center"
+                  />
+
+                  {/* Mobile image (<md) */}
+                  <Image
+                    src="/alaf/hero/hero-mobile.jpg"
+                    alt="Estudiantes felices en ALAF"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="md:hidden object-cover object-center"
+                  />
+
+                  {/* Overlay sutil para look premium */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-slate-900/15 via-slate-900/15 to-slate-900/25" />
+                </div>
+              </div>
+            </div>
           </div>
-          {/* fin texto */}
         </div>
       </div>
     </section>
