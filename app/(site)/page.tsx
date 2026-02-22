@@ -20,8 +20,8 @@ export default function Page() {
       <main>
         <Hero />
         {/* ORDEN SOLICITADO */}
-        <About />
         <Benefits />
+        <About />
         <WhyUs />
         <Services />
         <Testimonials />
