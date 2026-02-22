@@ -24,6 +24,14 @@
 
     --radius: 1rem;
 
+    /* Sombras pro (solo neutros, sin cambiar paleta) */
+    --shadow-1: 0 14px 30px -18px rgba(15,23,42,.18);
+    --shadow-2: 0 22px 55px -28px rgba(15,23,42,.22);
+    --shadow-3: 0 30px 80px -40px rgba(15,23,42,.25);
+
+    /* Ring suave (tipo K12: contorno fino + sombra ligera) */
+    --ring-soft: 0 0 0 1px rgba(15,23,42,.06);
+
     /* Para anchors con navbar sticky (80px + aire) */
     scroll-padding-top: 96px;
   }
@@ -129,29 +137,52 @@
   .h1 { @apply text-4xl md:text-5xl font-semibold tracking-tight; }
   .h2 { @apply text-3xl md:text-4xl font-semibold; }
   .muted { color: var(--muted) !important; }
+
+  /* Divisor suave (tipo “strip divider”) */
+  .divider{
+    height: 1px;
+    background: color-mix(in srgb, var(--border) 70%, #ffffff 30%);
+  }
 }
 
 /* =========================================================
-   LAYOUT & CARDS
+   LAYOUT & CARDS (unificación de ritmo)
    ========================================================= */
-.container-max { @apply max-w-7xl mx-auto px-4; }
-.section      { @apply py-16 md:py-24; }
+.container-max { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
 
+/* Más ritmo tipo K12: menos “bloque gigante”, más aire controlado */
+.section      { @apply py-14 md:py-20 lg:py-24; }
+
+/* Superficies/panels consistentes */
+.panel{
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, #ffffff 70%, rgba(255,255,255,0) 30%);
+  box-shadow: var(--shadow-1);
+}
+
+/* Cards consistentes + hover suave (solo en dispositivos con hover) */
 .card{
   background: var(--surface) !important;
   border: 1px solid var(--border) !important;
   border-radius: var(--radius);
-  box-shadow: 0 14px 30px -18px rgba(15,23,42,.18);
+  box-shadow: var(--shadow-1);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+@media (hover:hover){
+  .card:hover{
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
 }
 
 /* =========================================================
-   NAVBAR (rosado)
+   NAVBAR (rosado) — micro detalle pro
    ========================================================= */
 header{
   background: color-mix(in srgb, var(--pink) 26%, #ffffff 74%) !important;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid color-mix(in srgb, var(--pink) 38%, var(--border) 62%) !important;
-  box-shadow: 0 8px 22px -18px rgba(43,47,51,.28);
+  box-shadow: 0 10px 24px -20px rgba(43,47,51,.28);
 }
 header a{ color: var(--ink); }
 header a:hover{ color: var(--ink); text-decoration: underline; }
@@ -160,16 +191,23 @@ header a.btn:hover{ text-decoration: none; }
 header .btn-primary{ background: var(--ink) !important; color: #fff !important; }
 
 /* =========================================================
-   BOTONES
+   BOTONES — hover/active más fino, sin saltos agresivos
    ========================================================= */
 .btn{
   @apply inline-flex items-center justify-center px-5 py-3 font-medium rounded-2xl transition focus:outline-none;
+  will-change: transform;
 }
 .btn-primary{
   background: var(--ink) !important;
   color: #fff !important;
 }
-.btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+
+/* Hover solo cuando aplica */
+@media (hover:hover){
+  .btn-primary:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+  .btn-secondary:hover{ transform: translateY(-1px); }
+}
+.btn-primary:active{ transform: translateY(0); filter: brightness(1.02); }
 .btn-primary:focus{ box-shadow: 0 0 0 4px color-mix(in srgb, var(--ink) 25%, #ffffff 75%); }
 
 .btn-secondary{
@@ -179,7 +217,7 @@ header .btn-primary{ background: var(--ink) !important; color: #fff !important; 
 }
 
 /* =========================================================
-   FORM
+   FORM — inputs más “premium”
    ========================================================= */
 input, textarea{
   @apply rounded-xl w-full px-4 py-3 outline-none transition;
@@ -210,11 +248,11 @@ input:focus, textarea:focus{
   border: 1px solid rgba(255,255,255,.18);
   border-radius: var(--radius);
   padding: 1.25rem 1.25rem 1.35rem;
-  box-shadow: 0 24px 60px -28px rgba(2,8,23,.45);
+  box-shadow: var(--shadow-3);
 }
 
 /* =========================================================
-   “Prioriza tu dinero” y checks
+   ICONOS / CHECKS
    ========================================================= */
 .feature-icon{
   display:inline-flex;align-items:center;justify-content:center;
@@ -233,13 +271,23 @@ input:focus, textarea:focus{
 }
 
 /* =========================================================
-   DOTS (hero/testimonios)
+   DOTS (testimonios) — más “K12”
    ========================================================= */
 .dot{
-  height:.6rem;width:1.8rem;border-radius:9999px;
-  border:1px solid #cbd5e1;background:#e2e8f0;
+  height:.55rem;
+  width:1.25rem;
+  border-radius:9999px;
+  border:1px solid color-mix(in srgb, var(--border) 75%, #ffffff 25%);
+  background: #e2e8f0;
+  transition: width 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+@media (hover:hover){
+  .dot:hover{
+    border-color: color-mix(in srgb, var(--celeste) 45%, var(--border) 55%);
+  }
 }
 .dot[aria-current="true"]{
+  width:2.1rem;
   background: var(--celeste) !important;
   border-color: var(--celeste) !important;
 }
