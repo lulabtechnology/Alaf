@@ -2,7 +2,6 @@
 // app/(site)/components/contact.tsx
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 /**
@@ -10,7 +9,6 @@ import { useState } from "react";
  * - WhatsApp (Atención)
  * - Correos clicables (mailto)
  * - Iconos con enlaces a Instagram y TikTok
- * - Imagen final que SIEMPRE se ajusta al marco
  */
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -182,24 +180,6 @@ export function Contact() {
                 </span>
               </div>
             </form>
-          </div>
-        </div>
-
-        <div
-          className="mt-6 overflow-hidden rounded-3xl shadow-sm ring-1 ring-black/5"
-          data-reveal
-          data-reveal-delay="220"
-        >
-          <div className="relative aspect-[16/7] w-full">
-            <Image
-              src="/alaf/contacto/extra.jpg"
-              alt="ALAF – acompañamiento real"
-              fill
-              sizes="(min-width: 768px) 1280px, 100vw"
-              className="object-cover"
-              priority={false}
-              quality={88}
-            />
           </div>
         </div>
       </div>
