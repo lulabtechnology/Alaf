@@ -29,13 +29,14 @@ export function About() {
               data-reveal
               data-reveal-delay="120"
             >
-              <div className="relative aspect-[4/5] md:aspect-[16/11]">
+              {/* ratio más cercano a la imagen (vertical) */}
+              <div className="relative aspect-[3/4]">
                 <Image
                   src="/alaf/about/side.jpg"
                   alt="Familias aprendiendo con ALAF"
                   fill
                   sizes="(min-width: 1024px) 560px, (min-width: 768px) 520px, 100vw"
-                  className="object-cover"
+                  className="object-cover [object-position:center_18%]"
                   quality={90}
                 />
               </div>
